@@ -1,0 +1,66 @@
+# Site settings
+title: Joohyun's Research Blog
+description: 논문 리뷰, 기술 블로그, 연구 기록
+url: "https://curiousLionH.github.io"
+baseurl: ""
+
+# Author
+author:
+  name: Lee, Joohyun
+  email: ""
+
+# Theme
+theme: minima
+minima:
+  skin: dark
+
+# Plugins (GitHub Pages supported)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# MathJax
+math: true
+
+# Collections & defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Lee, Joohyun"
+      toc: true
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .bundle/
+  - .omc/
+  - README.md
+
+# Categories for this blog
+# paper-review: 논문 리뷰
+# tech: 기술 포스트
+# note: 공부 노트
