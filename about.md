@@ -4,24 +4,74 @@ title: About
 permalink: /about/
 ---
 
-## 안녕하세요!
+# Joohyun Lee
 
-저는 이주현(Joohyun Lee)입니다. PhD 과정에서 연구를 진행하며 공부한 내용들을 기록하는 블로그입니다.
+**[Your current title, e.g. M.S. Student / Research Engineer]**  
+[Your Institution / Company]  
+📧 [your-email@example.com] · [GitHub](https://github.com/curiousLionH) · [LinkedIn](#) · [CV (PDF)](#)
 
-## 블로그 목적
+---
 
-- **논문 리뷰**: 읽은 논문들을 정리하고 핵심 아이디어를 요약
-- **기술 포스트**: 구현하거나 실험한 내용 공유
-- **공부 노트**: 개념 정리 및 학습 기록
+## Bio
 
-## 카테고리
+I am a [researcher/student] at [Institution], advised by [Advisor Name]. My research focuses on **[Research Area 1]** and **[Research Area 2]**, with the goal of [one sentence research vision].
 
-| 카테고리 | 설명 |
-|---------|------|
-| `paper-review` | 논문 리뷰 |
-| `tech` | 기술 포스트 |
-| `note` | 공부 노트 |
+Previously, I [brief background — e.g., received my B.S. in Computer Science from X University in 20XX].
 
-## Contact
+---
 
-- GitHub: [curiousLionH](https://github.com/curiousLionH)
+## Research Interests
+
+- **[Area 1]**: e.g., Large Language Models, Generative AI
+- **[Area 2]**: e.g., Computer Vision, Multimodal Learning
+- **[Area 3]**: e.g., Efficient Deep Learning, Model Compression
+
+---
+
+## Education
+
+**[Degree, e.g. M.S. in Computer Science]** · [Start Year] – Present  
+[University Name], [Country]  
+Advisor: [Professor Name]
+
+**[Degree, e.g. B.S. in Computer Science]** · [Year] – [Year]  
+[University Name], [Country]  
+GPA: [X.XX / 4.XX]
+
+---
+
+## Publications
+
+> *Publications will appear here.*
+
+<!-- Example format:
+**[Paper Title](link)**  
+Author 1, **Joohyun Lee**, Author 3  
+*Venue (Year)*  
+[[arXiv](#)] [[Code](#)] [[Slides](#)]
+-->
+
+---
+
+## Projects
+
+**[Project Name]** · [Year]  
+Brief description of the project and your contribution.  
+[[Code](#)] [[Demo](#)]
+
+---
+
+## Skills
+
+| Category | Tools |
+|----------|-------|
+| Languages | Python, C++, [others] |
+| Frameworks | PyTorch, [others] |
+| Areas | [e.g. NLP, CV, RL] |
+
+---
+
+## News
+
+- **[Month Year]** — [Something happened, e.g. paper accepted at ...]
+- **[Month Year]** — [Something happened]

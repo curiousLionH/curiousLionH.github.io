@@ -1,105 +1,120 @@
 ---
 layout: post
-title: "[논문 리뷰] 제목을 여기에"
+title: "[Paper Review] Title Goes Here"
 date: 2026-04-14
 categories: paper-review
 tags: [deep-learning, template]
 math: true
 ---
 
-> **Paper**: 논문 전체 제목  
-> **Authors**: 저자 목록  
-> **Venue**: 학회/저널 이름 (연도)  
-> **Links**: [[arXiv]](https://arxiv.org) · [[Code]](https://github.com)
+> **Paper**: Full paper title  
+> **Authors**: Author list  
+> **Venue**: Conference / Journal (Year)  
+> **Links**: [[arXiv]](#) · [[Code]](#) · [[Project]](#)
 
 ---
 
 ## TL;DR
 
-논문을 한두 문장으로 요약.
+One or two sentences summarizing the paper's core contribution.
 
 ---
 
-## 배경 (Background)
+## Background
 
-이 논문이 해결하려는 문제와 관련 배경 지식을 설명합니다.
+What problem does this paper address? What are the limitations of prior work?
 
-### 문제 정의
+### Problem Setup
 
-기존 방법의 한계점:
-- 한계 1
-- 한계 2
+Given [input], the goal is to [output/objective].
+
+Prior approaches suffer from:
+- Limitation 1
+- Limitation 2
 
 ---
 
-## 방법론 (Method)
+## Method
 
-### 핵심 아이디어
+### Key Idea
 
-논문의 핵심 기여를 설명합니다.
+Describe the core insight in plain language before diving into formulas.
 
-### 수식
+### Formulation
 
-목적 함수:
-
-$$
-\mathcal{L} = \mathbb{E}_{x \sim p_\text{data}} \left[ \log p_\theta(x) \right]
-$$
-
-모델 구조:
+Objective:
 
 $$
-h_t = f(W_h h_{t-1} + W_x x_t + b)
+\mathcal{L}(\theta) = \mathbb{E}_{x \sim p_\text{data}} \left[ \log p_\theta(x) \right]
 $$
 
-### 알고리즘
+Update rule:
+
+$$
+\theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}(\theta)
+$$
+
+### Architecture / Algorithm
 
 ```python
-# 핵심 알고리즘 구현 예시
 def forward(self, x):
-    # step 1
-    h = self.encoder(x)
-    # step 2
-    out = self.decoder(h)
+    h = self.encoder(x)      # encode
+    z = self.bottleneck(h)   # compress
+    out = self.decoder(z)    # reconstruct
     return out
 ```
 
 ---
 
-## 실험 (Experiments)
+## Experiments
 
-### 설정
+### Setup
 
-- **데이터셋**: 
-- **베이스라인**: 
-- **평가 지표**: 
+- **Datasets**: 
+- **Baselines**: 
+- **Metrics**: 
 
-### 결과
+### Main Results
 
-| Method | Metric 1 | Metric 2 |
-|--------|----------|----------|
-| Baseline | 0.00 | 0.00 |
-| **Ours** | **0.00** | **0.00** |
+| Method | Metric 1 ↑ | Metric 2 ↓ |
+|--------|-----------|-----------|
+| Baseline A | 00.0 | 0.000 |
+| Baseline B | 00.0 | 0.000 |
+| **This paper** | **00.0** | **0.000** |
+
+### Ablation Study
+
+| Component | Metric 1 |
+|-----------|---------|
+| Full model | **00.0** |
+| w/o component A | 00.0 |
+| w/o component B | 00.0 |
 
 ---
 
-## 분석 (Analysis)
+## Analysis
 
-### 강점
+### Strengths
+
 - 
 
-### 약점 / 한계
+### Weaknesses / Limitations
+
 - 
 
 ---
 
-## 개인적인 생각
+## My Take
 
-이 논문에서 흥미로운 점과 향후 연구 방향에 대한 생각을 적습니다.
+What I found interesting, surprising, or worth following up on.
+
+**Follow-up questions:**
+- 
+- 
 
 ---
 
-## 참고문헌
+## References
 
 1. 
 2. 
