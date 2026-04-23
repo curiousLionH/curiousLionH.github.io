@@ -4,11 +4,20 @@ title: About
 permalink: /about/
 ---
 
-# Joohyun Lee
-
-**Research Engineer, Autonomous Driving Division**  
-Hyundai Motor Company, Seoul, South Korea  
-📧 joohyun@gatech.edu · [GitHub](https://github.com/curiousLionH) · [LinkedIn](https://www.linkedin.com/in/joohyun-lee-2b3816125)
+<div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+  <img src="/assets/img/profile_pic.jpg" alt="Joohyun Lee"
+       style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; flex-shrink: 0;">
+  <div>
+    <h1 style="margin-top: 0;">Joohyun Lee</h1>
+    <p>
+      <strong>Research Engineer, Autonomous Driving Division</strong><br>
+      Hyundai Motor Company, Seoul, South Korea<br>
+      📧 joohyun@gatech.edu ·
+      <a href="https://github.com/curiousLionH">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/joohyun-lee-2b3816125">LinkedIn</a>
+    </p>
+  </div>
+</div>
 
 ---
 
