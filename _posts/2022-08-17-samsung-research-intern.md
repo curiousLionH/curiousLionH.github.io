@@ -5,6 +5,7 @@ date: 2022-08-17
 categories: project
 tags: [action-recognition, IMU, SVM, machine-learning, wearable-robot, samsung]
 math: true
+published: false
 ---
 
 > **Organization**: Samsung Research, Robot Center GEMS LAB  
