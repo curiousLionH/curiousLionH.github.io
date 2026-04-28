@@ -61,7 +61,8 @@ Hyundai Motor Company — Autonomous Driving Division, Seoul, South Korea
 - Developed and enhanced an end-to-end 3D MOT model for autonomous driving perception.
 
 **University Student Intern** · Jul 2022 – Aug 2022  
-Samsung Research — Robot Center GEMS LAB, Seoul, South Korea
+Samsung Research — Robot Center GEMS LAB, Seoul, South Korea  
+[[Project Post]](/2022/08/17/samsung-research-intern/)
 - Developed an action recognition algorithm based on IMU sensor data from a wearable robot.
 - Achieved top accuracy on a boxing move classification task.
 
@@ -107,9 +108,9 @@ Patent Application No. (US)19/409,994 · (KR)1020250042965 · (CN)202511849891.2
 
 | Award | Issuer | Year |
 |-------|--------|------|
-| Smart Car Design and Racing Competition — Dean's Award (1st Place) | SKKU College of ICE | Nov 2022 |
+| [Smart Car Design and Racing Competition — Dean's Award (1st Place)](/2022/11/01/smart-car-racing-competition/) | SKKU College of ICE | Nov 2022 |
 | Smart Car Design and Racing Competition — Excellence Award (Design) | SKKU WE-UP | Jun 2022 |
-| University Student Self-Made Car Contest — Gold Award (Technical Idea) | KSAE | Dec 2021 |
+| [University Student Self-Made Car Contest — Gold Award (Technical Idea)](/2021/12/01/a-pillar-blind-spot/) | KSAE | Dec 2021 |
 | 2021 ICT Colloquium — Minister's Award | Ministry of Science and ICT | Nov 2021 |
 | Engineering Talent Development Program — Excellence Award | Sungkyunkwan University | Nov 2021 |
 | HDAT (Hyundai Motor Group Data Analytics Test) — Level 4 (Highest) | Hyundai NGV | Aug 2023 |
