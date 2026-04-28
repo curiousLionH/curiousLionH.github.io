@@ -8,7 +8,7 @@ math: false
 ---
 
 > **Competition**: Smart Car Design and Racing Competition  
-> **Award**: Dean's Award (1st Place) — SKKU College of Information and Communication Engineering (Nov 2022)  
+> **Award**: Dean's Award (1st Place) — SKKU College of Information and Communication Engineering, Nov 2022  
 > **Team**: Group 12 — Lee Joohyun (Leader), Jeong Junhwan, Baek Woojung  
 > **Role**: Team Leader, Software & Hardware Design
 
@@ -16,74 +16,63 @@ math: false
 
 ## Concept
 
-Driving is exhausting — especially on long road trips. **Smart PikaPiCar** is an autonomous driving car designed so that everyone in the car, including the driver, can fully enjoy the journey.
+Driving is exhausting — especially on long road trips. **Smart PikaPiCar** is an autonomous driving car designed so that everyone, including the driver, can fully enjoy the journey.
 
-The project combined the Pikachu character concept with autonomous driving:
-- **Hardware**: Pikachu-shaped body — the car *is* the driver's alter ego
-- **Software**: Plays Pokémon music while driving — the journey itself is part of the trip
+The concept fuses an autonomous vehicle with the Pikachu character:
 
----
+![Concept diagram](/assets/img/portfolio/smartcar_concept.jpg)
 
-## Hardware
-
-The car body was **designed in Autodesk Inventor** and **3D-printed**, then hand-painted with acrylic paint to achieve the Pikachu look — ears, lightning bolt tail, cheek blushes, and Pokéball wheels.
-
-Sensors on the chassis:
-- Infrared (IR) line sensors — for lane tracking and stop line detection
-- Ultrasonic sensors — for lateral distance keeping
+- **Hardware**: Pikachu-shaped body — the car *is* the driver's alter ego, taking the wheel so the driver can relax
+- **Software**: Plays Pokémon music during the ride — the journey itself becomes part of the trip
 
 ---
 
-## Software
+## The Car
 
-### 1. Stable Line Tracing
+The exterior was designed in **Autodesk Inventor**, 3D-printed, and hand-painted with acrylic to achieve the full Pikachu look — ears, lightning bolt tail, cheek blushes, and Pokéball wheels.
 
-The core driving algorithm uses consecutive detection counts rather than a single-frame decision to avoid false turns.
+![Car exterior — three angles](/assets/img/portfolio/smartcar_car_exterior.jpg)
 
-```
-if (consecutive right-lane detections ≥ threshold):
-    reverse in opposite direction
-elif (right lane detected):
-    turn left; right_count++; reset left_count
-elif (left lane detected):
-    turn right; left_count++; reset right_count
-else:
-    reset both counts; go straight
-```
+---
 
-When turning, the inner wheel runs at `motor_output × 0.6` for smooth arcs.
+## Design & Manufacturing Process
 
-### 2. Stop Line Detection
+![CAD model and painting process](/assets/img/portfolio/smartcar_cad_process.jpg)
 
-Two conditions must both pass:
-1. **Cooldown check**: at least 1.7 s since the last stop (prevents double-counting)
-2. **Count threshold**: both IR sensors detect white simultaneously for more than 5 frames
+---
 
-```
-if (time_since_last_stop < 1.7s): not a stop line
-if (both sensors white): count++
-if (count > 5): STOP LINE DETECTED
-```
+## Software: Stable Line Tracing
 
-### 3. Parallel Parking
+The lane-following algorithm uses **consecutive detection counts** rather than single-frame decisions to avoid jitter and false turns. When cornering, the inner wheel runs at reduced output (×0.6) for smooth arcs.
 
-Uses the ultrasonic sensor to maintain a target lateral distance from the wall:
+![Line tracing flowchart](/assets/img/portfolio/smartcar_line_tracing.jpg)
 
-```
-if (stopped or sensor invalid):    steering = 0
-elif (current - target > 10):      steering = +1  (rotate right)
-elif (current - target < -10):     steering = -1  (rotate left)
-else:                              steering = 0   (parallel)
-```
+---
 
-### 4. Melody Playback
+## Software: Stop Line Detection
 
-Two Pokémon songs play in a loop during driving — encoded as note arrays and played via a piezo speaker using Arduino's `tone()` function, interleaved with the main control loop using `millis()` for non-blocking playback.
+Two conditions must both pass to trigger a stop:
+1. **Cooldown** — at least 1.7 s since the last stop (prevents double-counting)
+2. **Count threshold** — both sensors detect white simultaneously for >5 consecutive frames
 
-Songs: *Route 201* and *We Are All Friends* (Pokémon OST)
+![Stop line detection flowchart](/assets/img/portfolio/smartcar_stop_line.jpg)
+
+---
+
+## Software: Parallel Parking
+
+The ultrasonic sensor measures lateral distance to the wall. The car steers to maintain a target gap, correcting continuously:
+
+![Parallel parking flowchart](/assets/img/portfolio/smartcar_parallel.jpg)
+
+---
+
+## Software: Melody Playback
+
+Two Pokémon songs (*Route 201* and *We Are All Friends*) play on a loop via a piezo speaker using Arduino's `tone()`, interleaved with the control loop using `millis()` for non-blocking playback.
 
 ---
 
 ## Result
 
-The car successfully completed the full autonomous circuit — lane following, stop line detection, and parallel parking — while playing music. The design and technical implementation earned **1st Place (Dean's Award)** at the SKKU Smart Car Design and Racing Competition.
+The car completed the full circuit — lane following, stop line detection, and parallel parking — while playing music, earning **1st Place (Dean's Award)** at the SKKU Smart Car Design and Racing Competition.

@@ -9,154 +9,116 @@ math: true
 
 > **Organization**: Samsung Research, Robot Center GEMS LAB  
 > **Period**: Jul 2022 – Aug 2022 (5 weeks)  
-> **Role**: University Student Intern (SW Development)
+> **Role**: University Student Intern (SW Development)  
+> **Keywords**: Action Recognition, Human-Robot Interaction (HRI)
 
 ---
 
 ## Overview
 
-During the summer of 2022, I interned at **Samsung Research's Robot Center GEMS LAB**, where I developed an **IMU-based action recognition algorithm** for wearable robots. The goal was to classify boxing punch motions from wrist-worn IMU sensors in real time, with the results intended for deployment on SR's wearable robot platform.
-
-**Keywords**: Action Recognition, Human-Robot Interaction (HRI)
+During the summer of 2022, I interned at **Samsung Research's Robot Center GEMS LAB**, where I developed an **IMU-based action recognition algorithm** for wearable robots. The goal was to classify boxing punch motions from wrist-worn IMU sensors — in real time — for deployment on SR's wearable robot platform.
 
 ---
 
-## Problem Definition
+## Target Motions
 
-Wearable robots need to understand the user's intended motion to provide appropriate assistance. The task was to recognize **6 boxing punch types** from dual-wrist IMU data:
+6 boxing punch types were chosen as recognition targets, covering both hands:
 
-| Label | Motion |
-|-------|--------|
-| RS | Right Straight |
-| RH | Right Hook |
-| RU | Right Upper Cut |
-| LS | Left Straight |
-| LH | Left Hook |
-| LU | Left Upper Cut |
+![Punch types overview](/assets/img/portfolio/samsung_punch_types.jpg)
+
+Data was collected from **5 subjects**, **200 samples per class**.
 
 ---
 
-## System Pipeline
+## 5-Week Timeline
 
-### Hardware Setup
-
-Two sensor boards were used:
-
-- **Wireless (prototype)**: Nicla Sense ME — BHI260AP (6DoF), BLE communication via Python `asyncio`
-  - Collected: Acceleration (x,y,z), Gyroscope (x,y,z), Quaternion (x,y,z,w)
-  - Logging frequency: 40 Hz (one hand), 12 Hz (two hands)
-- **Wired (production robot)**: EBIMU-9DOF (9DoF), 5 IMUs mounted across the body
-  - WiFi communication via Unity log modification
-  - Logging frequency: 100 Hz
-
-### Full Pipeline
-
-```
-Data Acquisition → Pre-processing → Feature Extraction → Feature Selection → Classification Model
-```
-
-**Data collection**: 5 subjects × 200 samples per class
+![Project timeline](/assets/img/portfolio/samsung_timeline.jpg)
 
 ---
 
-## Pre-processing
+## Data Acquisition
 
-### 1. EWMA Smoothing
+Two sensor setups were used — a wireless prototype board (Nicla Sense ME, BLE) for development, and the actual wearable robot's wired IMUs (EBIMU-9DOF, 5 sensors) for final validation.
 
-The wearable robot's IMU sensors (especially arms #2, #3, #4) vibrate heavily due to imperfect body contact. Applied an **Exponential Weighted Moving Average (EWMA)** filter:
+![Data acquisition setup](/assets/img/portfolio/samsung_data_acq.jpg)
 
-$$
-EWMA(t) = \frac{Data_t + (1-\alpha)Data_{t-1} + (1-\alpha)^2 Data_{t-2} + \cdots}{1 + (1-\alpha) + (1-\alpha)^2 + \cdots}, \quad \alpha = \frac{2}{N+1}
-$$
+Collected signals: Acceleration (x,y,z), Gyroscope (x,y,z), Quaternion (x,y,z,w).
 
-### 2. Windowing
+---
 
-Compared three windowing strategies:
+## Full System Pipeline
 
-1. **Fixed Sliding Window** — rejected: inappropriate for segmenting discrete punch events
-2. **Behavior Definition Window** — rejected: ambiguous activity transitions, generates windows during rest
-3. **Event Definition Window** ✓ — selected: detect peak in Y-axis acceleration, extract ±0.5s around each peak
+The complete classifier pipeline from raw sensor data to predicted label:
 
-For real-time (on-the-fly) operation, a minimum threshold derived from reference log data triggers peak detection dynamically.
+![Classifier model pipeline](/assets/img/portfolio/samsung_pipeline.jpg)
 
-### 3. Quaternion → Euler Angles
+Key stages:
+1. **Data Acquisition** — BLE/WiFi sensor logging
+2. **Pre-processing** — EWMA smoothing → Peak finding → Windowing → Quaternion→Euler → Zero-out ends
+3. **Data Augmentation** — Gaussian noise generation
+4. **Feature Extraction** — Time domain, frequency domain, correlation (1,455 features total)
+5. **Feature Selection** — t-test + PCA
+6. **Classification** — SVM / ANN / CNN
 
-Converted quaternion $(x,y,z,w)$ to roll/pitch/yaw using:
+---
 
-```python
-roll  = np.arctan2(2*(w*x + y*z), 1 - 2*(x*x + y*y))
-pitch = np.arcsin(np.clip(2*(w*y - z*x), -1, 1))
-yaw   = np.arctan2(2*(w*z + x*y), 1 - 2*(y*y + z*z))
-```
+## Pre-processing: EWMA Smoothing
 
-### 4. Data Augmentation
+The wearable robot's arm IMUs vibrate heavily due to imperfect body contact. An **Exponential Weighted Moving Average (EWMA)** filter was applied to smooth the signal before windowing.
 
-Added Gaussian noise (σ calibrated to sensor resolution) to existing windows to address data scarcity.
+![EWMA before/after comparison](/assets/img/portfolio/samsung_ewma.jpg)
+
+The peaks become much cleaner and more consistent after smoothing.
 
 ---
 
 ## Feature Extraction
 
-Total **1,455 features** extracted per window:
+A total of **1,455 features** were extracted per window from time-domain, frequency-domain, and cross-sensor correlation statistics:
 
-| Feature Type | Composition | Count |
-|---|---|---|
-| Time Domain | 9 stats × 6 channels × 5 sensors | 270 |
-| Frequency Domain | 9 stats × 4 wavelet levels × 6 channels × 5 sensors | 1,080 |
-| Correlation | 15C2 pairs of roll/pitch/yaw across 5 sensors | 105 |
+![Feature extraction summary](/assets/img/portfolio/samsung_feature_extract.jpg)
 
-Stats: max, min, mean, median, std, skewness, kurtosis, argmax, argmin
+Feature selection used t-test p-value ranking to pick the top 50 (M1) or 100 (M2/M3) most discriminative features.
 
 ---
 
-## Classifier Design
+## Feature Selection: PCA Visualization
 
-A hierarchical 3-model structure was used:
+After selection, PCA confirms clear class separability for M1 (left vs. right), with more overlap in M2/M3 (individual punch types):
 
-```
-Input → M1 (SVM): Right vs. Left hand
-            ├─ Right → M2 (SVM/CNN): RS / RH / RU
-            └─ Left  → M3 (SVM/CNN): LS / LH / LU
-```
+![PCA visualization of selected features](/assets/img/portfolio/samsung_pca.jpg)
 
-Feature selection via t-test p-value ranking: top 50 features for M1, top 100 for M2/M3.
+---
 
-### Results
+## Recognition On-the-Fly
+
+The real-time inference pipeline uses a dynamic threshold derived from a short reference log to continuously detect new punch events:
+
+![Recognition on-the-fly pipeline](/assets/img/portfolio/samsung_on_the_fly.jpg)
+
+---
+
+## Results
 
 | Model | Classifier | Test Accuracy |
 |-------|-----------|---------------|
-| M1 (R vs. L) | SVM | **100%** |
-| M2 (Right 3-class) | SVM | **100%** |
-| M2 (Right 3-class) | CNN | 61.11% |
-| M3 (Left 3-class) | SVM | 77.78% |
-| M3 (Left 3-class) | CNN | 77.78% |
+| M1 — Right vs. Left hand | SVM | **100%** |
+| M2 — Right 3-class (RS/RH/RU) | SVM | **100%** |
+| M3 — Left 3-class (LS/LH/LU) | SVM | 77.78% |
+| M2/M3 | CNN | 61–77% |
 | One-hand triple (ANN) | ANN | 94.44% |
 
-SVM dominated. CNN underperformed due to the feature-engineered (non-raw) input format being ill-suited for convolutional processing.
+Model 2/3 CNN results and cross-validation:
 
----
+![CNN model results](/assets/img/portfolio/samsung_model_results.jpg)
 
-## On-the-Fly Recognition
-
-Deployed the full pipeline in real time:
-1. Reference log from same subject → determine dynamic peak threshold
-2. Continuously detect peaks in incoming stream
-3. Extract window → feature engineering → classification → output label
-
----
-
-## OJT: Lower-Body Wearable Robot
-
-As a bonus task, collected and analyzed IMU data from a lower-body exoskeleton under varying thigh strap tightness conditions (tight, slightly loose, very loose). Extracted time/frequency domain features, ran PCA visualization, and confirmed SVM distinguishability at 98.15% test accuracy — suggesting that strap tightness could be monitored automatically from sensor data.
+SVM significantly outperformed CNN here — the feature-engineered input is better suited to kernel methods than convolution over raw sequences.
 
 ---
 
 ## Takeaways
 
-**Learned**: Action recognition pipeline, windowing techniques for temporal sensor data, BLE multi-device communication, SVM/ANN/CNN comparison on IMU data.
-
-**Future directions**:
-- Larger, more diverse dataset (age, gender, body type)
-- IMU position estimation to improve Hook vs. Upper Cut separation
-- Kalman filter with magnetometer to mitigate IMU drift
-- Hardware fix: relocate arm IMUs (#2, #4) to reduce vibration
+- Learned the full action recognition pipeline: data collection → preprocessing → feature engineering → model selection
+- Hands-on experience with BLE multi-device communication using Python `asyncio`
+- SVM with well-engineered features beat CNN on small, structured IMU datasets
+- Key limitation: Hook vs. Upper Cut are geometrically similar — position estimation (not just orientation) would likely improve discrimination

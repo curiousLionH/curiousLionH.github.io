@@ -14,13 +14,19 @@ math: true
 
 ---
 
+## Overview
+
+![Project poster](/assets/img/portfolio/apillar_poster.jpg)
+
+---
+
 ## Motivation
 
-At signalized intersections in Korea, **711 pedestrian accidents** occurred during left/right turns — resulting in 26 deaths and 719 injuries. A major contributing factor: driver inattention, often caused by the **A-pillar blind spot**.
+At signalized intersections in Korea, **711 pedestrian accidents** occurred during turns — resulting in 26 deaths and 719 injuries. A major contributing factor: the **A-pillar blind spot**.
 
-The A-pillar (the structural column between the windshield and front side window) is deliberately thick to protect the driver during a collision. This creates an unavoidable blind spot at exactly the angle where pedestrians appear during turns.
+The A-pillar (the column between the windshield and front side window) must be thick to protect the driver in a collision. This creates an unavoidable blind spot at exactly the angle where pedestrians appear during left/right turns.
 
-**Goal**: Show the occluded view *through* the A-pillar in real time, calibrated to the driver's actual eye position.
+**Goal**: Show the occluded view *through* the A-pillar, in real time, calibrated to the driver's actual eye position.
 
 ---
 
@@ -34,80 +40,42 @@ Web Camera (wide-angle outside view) ──────┘
 
 | Component | Role |
 |-----------|------|
-| **Depth Camera** | Reconstructs 3D environment as point cloud; localizes driver's eye position |
+| **Depth Camera** | Reconstructs 3D point cloud; localizes driver's eye in space |
 | **Mediapipe** | Detects facial landmarks in RGB image, extracts eye coordinates |
-| **Web Camera** | Captures wide-angle view of the car's exterior |
-| **Computer** | Computes crop region based on eye–LCD spatial relationship |
-| **LCD** | Mounted on A-pillar; displays the cropped and resized exterior image |
+| **Web Camera** | Captures wide-angle exterior view |
+| **Computer** | Computes crop region based on eye–LCD geometry |
+| **LCD** | Mounted on A-pillar; displays cropped and depth-scaled exterior image |
 
 ---
 
 ## Algorithm
 
-### Eye-to-LCD Geometry
+The key insight: the correct crop region in the webcam image depends on **where the driver's eye is relative to the LCD** at any moment. As the driver's head moves, the displayed region updates accordingly.
 
-The system continuously estimates where the driver is looking *through* the A-pillar by computing the relative position between the eye and the LCD surface.
-
-**Horizontal crop** (front-view geometry):
-
-$$
-\text{Eye\_to\_LCD\_y} = \left| \text{LCD}_y - \text{Eye}_y \right|
-$$
+**Horizontal offset** (from front-view geometry):
 
 $$
 \text{Crop\_Pixel\_y} = \left( \sqrt{\frac{\text{Eye\_to\_LCD\_y}}{\text{Avg(Eye\_to\_LCD\_y)}}} - 1 \right) \times 2560
 $$
 
-**Depth scaling** (side-view geometry):
-
-$$
-\text{Eye\_to\_LCD\_z} = \left| \text{LCD}_z - \text{Eye}_z \right|
-$$
+**Depth scaling** (from side-view geometry):
 
 $$
 \text{magnification\_z} = \frac{\text{Avg(Eye\_to\_LCD\_z)}}{\text{Eye\_to\_LCD\_z}}
 $$
 
-The webcam image is cropped at the computed pixel offset and resized by `magnification_z`, so the displayed region always corresponds to exactly what the driver's eye line intersects on the other side of the pillar.
-
-### Implementation
-
-```python
-# Pseudocode for the core crop computation
-eye_pos = mediapipe_face_mesh(rgb_frame)          # [x, y, z] in depth space
-lcd_pos = get_lcd_position_in_depth_space()       # calibrated constant
-
-eye_to_lcd_y = abs(lcd_pos[1] - eye_pos[1])
-crop_y = (sqrt(eye_to_lcd_y / avg_eye_to_lcd_y) - 1) * 2560
-
-eye_to_lcd_z = abs(lcd_pos[2] - eye_pos[2])
-scale = avg_eye_to_lcd_z / eye_to_lcd_z
-
-cropped = webcam_frame[crop_y : crop_y + window_h, :]
-display = cv2.resize(cropped, None, fx=scale, fy=scale)
-lcd.show(display)
-```
+The webcam image is cropped at the computed offset and resized by `magnification_z`, so the display always shows exactly what the eye line intersects on the other side of the pillar.
 
 ---
 
 ## Demo
 
-The system was demonstrated in a stationary car setup:
-- **OFF state**: A-pillar fully occludes the pedestrian-side view
-- **ON state**: LCD shows the correctly cropped and depth-compensated exterior view, matching what the driver would see if the pillar were transparent
-
-The displayed view updates in real time as the driver's head moves, maintaining geometric consistency.
+The system was demonstrated in a stationary car setup. When the LCD is OFF, the A-pillar fully blocks the view. When ON, the correct exterior region is displayed in real time as the driver's head moves.
 
 ---
 
 ## Expected Impact
 
-- **Accident prevention**: correct sight line recovery at exactly the blind spot angle
-- **Design freedom**: A-pillar thickness no longer constrained by visibility requirements
-- **Integration path**: compatible with existing in-vehicle display technology
-
----
-
-## Award
-
-Received the **Gold Award (1st Place, Technical Idea Category)** at the 2021 University Student Self-Made Car Contest, hosted by the Korean Society of Automotive Engineers (KSAE).
+- Accident prevention through accurate blind spot recovery
+- A-pillar thickness no longer constrained by visibility — safer crash structure possible
+- Compatible with existing in-vehicle display technology

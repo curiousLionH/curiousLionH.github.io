@@ -62,7 +62,7 @@ Hyundai Motor Company — Autonomous Driving Division, Seoul, South Korea
 
 **University Student Intern** · Jul 2022 – Aug 2022  
 Samsung Research — Robot Center GEMS LAB, Seoul, South Korea  
-[[Project Post]](/2022/08/17/samsung-research-intern/)
+[Project Post](/2022/08/17/samsung-research-intern/)
 - Developed an action recognition algorithm based on IMU sensor data from a wearable robot.
 - Achieved top accuracy on a boxing move classification task.
 
