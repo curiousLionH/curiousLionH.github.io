@@ -5,17 +5,30 @@ permalink: /projects/
 ---
 
 ## Selected Projects
+<div class="projects-grid">
+	<article class="project-card">
+		<div class="project-thumb">Point Cloud Registration</div>
+		<h3>Master's Project</h3>
+		<p>Diffusion-based coarse-to-fine 3D registration for noisy and partial point clouds.</p>
+	</article>
 
-**Master's Project — 3D Point Cloud Registration** (2025–2026)
-- Developing a diffusion-based coarse-to-fine registration framework for robust 3D alignment.
+	<article class="project-card">
+		<div class="project-thumb">LiDAR MOT</div>
+		<h3>3D LiDAR-Based MOT</h3>
+		<p>LiDAR pipeline, clustering, tracking and evaluation for autonomous vehicles.</p>
+	</article>
 
-**AMLAB — 3D LiDAR-Based MOT for Autonomous Vehicles** (2021–2022)
-- Implemented LiDAR perception pipeline and Kalman-filter-based tracker with data association.
+	<article class="project-card">
+		<div class="project-thumb">Delivery Robot</div>
+		<h3>Autonomous Delivery Robot</h3>
+		<p>Navigation and collision avoidance system for indoor autonomous delivery robot.</p>
+	</article>
 
-**Autonomous Delivery Robot** (2021)
-- Built an autonomous mobile robot for hospital ward assistance using LiDAR-based navigation and collision avoidance.
+	<article class="project-card">
+		<div class="project-thumb">Smart Car</div>
+		<h3>Smart Car Design & Racing</h3>
+		<p>Mechanical + software integration for an autonomous small vehicle (Dean's Award).</p>
+	</article>
+</div>
 
-**Smart Car Design & Racing Competition** (2022)
-- Mechanical and software contributions to an autonomous small vehicle; recipient of Dean's Award.
-
-More project write-ups are available in the `_posts` directory and the `portfolio/` folder.
+More project write-ups and artifacts are in the `_posts` directory and the `portfolio/` folder.

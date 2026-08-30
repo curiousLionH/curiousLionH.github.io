@@ -17,6 +17,29 @@
     --shadow: 0 18px 40px rgba(99, 103, 149, 0.12);
   }
 
+  /* Palette presets */
+  .palette-aurora {
+    --bg: #fffaf6;
+    --bg-soft: #f7f2ff;
+    --panel: rgba(255,255,255,0.85);
+    --ink: #0f1724;
+    --muted: #53607a;
+    --orange: #ff8f6b;
+    --peach: #ffd0b0;
+    --accent: #c9c2ff;
+  }
+
+  .palette-sunrise {
+    --bg: #fcfff6;
+    --bg-soft: #fff9f0;
+    --panel: rgba(255,255,240,0.9);
+    --ink: #111114;
+    --muted: #5b616f;
+    --orange: #ff6b8f;
+    --peach: #fff2a8;
+    --accent: #bfe8ff;
+  }
+
   body {
     background:
       radial-gradient(circle at top left, rgba(191, 232, 255, 0.5), transparent 28%),
@@ -352,6 +375,19 @@
     box-shadow: 0 8px 18px rgba(34,40,49,0.06);
   }
 
+  .palette-btn {
+    background: transparent;
+    border: 1px solid rgba(40,48,70,0.06);
+    padding: 0.35rem 0.6rem;
+    border-radius: 8px;
+    font-weight:700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 160ms ease;
+  }
+
+  .palette-btn:hover { transform: translateY(-3px); color:var(--orange); }
+
   .site-title {
     font-size:1.05rem;
     text-transform:none;
@@ -426,6 +462,29 @@
   /* Tiny cursor dot */
   .cursor-dot { position:fixed; left:0; top:0; width:12px; height:12px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); background: linear-gradient(90deg,var(--orange),var(--peach)); mix-blend-mode:normal; z-index:9999; transition:width 120ms ease, height 120ms ease, transform 120ms ease; }
 
+  /* Projects grid */
+  .projects-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    align-items:stretch;
+  }
+
+  .project-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,255,0.85));
+    border:1px solid var(--line);
+    display:flex; flex-direction:column; gap:0.6rem; padding:0.9rem;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .project-thumb {
+    height: 140px; border-radius:12px; background: linear-gradient(135deg,var(--accent, #bfe8ff), rgba(255,255,255,0.4)); display:flex; align-items:center; justify-content:center; color:var(--ink); font-weight:800; font-size:1.1rem;
+  }
+
+  .project-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(34,40,49,0.08); }
+
 
   @media (max-width: 780px) {
     .hero,
@@ -484,5 +543,27 @@
 
     document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
   } catch (e) { console.warn('Enhancement script failed', e); }
+</script>
+
+<script>
+// Palette switcher persistence
+(function(){
+  try {
+    const buttons = document.querySelectorAll('.palette-btn');
+    function apply(p) { document.body.classList.remove('palette-aurora','palette-sunrise'); document.body.classList.add('palette-' + p); localStorage.setItem('sitePalette', p); }
+    buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.palette)));
+    const saved = localStorage.getItem('sitePalette') || 'aurora';
+    apply(saved);
+  } catch(e) { /* noop */ }
 })();
+</script>
+
+<script>
+// expose a small helper to toggle palette from console (dev)
+window.setPalette = function(name){ document.body.classList.remove('palette-aurora','palette-sunrise'); document.body.classList.add('palette-' + name); localStorage.setItem('sitePalette', name); };
+</script>
+
+<script>
+})();
+</script>
 </script>
