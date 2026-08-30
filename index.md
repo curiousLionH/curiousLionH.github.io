@@ -4,43 +4,21 @@ title: Home
 ---
 
 <div class="profile-shell">
-  <section class="hero" id="about">
-    <div>
-      <p class="eyebrow">Research Engineer · Computer Vision & 3D Perception</p>
-      <h1>Joohyun Lee</h1>
-      <p class="hero-subtitle">Autonomous Driving Research Engineer · Georgia Tech M.S. in CS</p>
+  <section class="hero-fancy" id="about">
+    <div class="wrapper">
+      <div class="reveal" data-reveal>
+        <p class="eyebrow">Designy Research · 3D Perception</p>
+        <h1 class="title">Joohyun Lee</h1>
+        <p class="lead">I design perception systems for autonomous vehicles — merging clean product-minded interfaces with rigorous 3D research.</p>
 
-      <p>
-        I build perception systems for autonomous vehicles, with a focus on multi-sensor understanding,
-        point cloud processing, and robust real-world deployment. My work sits at the intersection of
-        3D perception, object tracking, and deep learning for safer mobility systems.
-      </p>
-
-      <div class="hero-actions">
-        <a class="pill" href="mailto:joohyun@gatech.edu">Email</a>
-        <a class="pill secondary" href="https://github.com/curiousLionH" target="_blank" rel="noopener">GitHub</a>
-        <a class="pill secondary" href="https://www.linkedin.com/in/joohyun-lee-2b3816125" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-
-    <div class="hero-panel">
-      <img class="profile-photo" src="/profile_pic.JPG" alt="Joohyun Lee" />
-      <div class="mini-stats">
-        <div class="mini-stat">
-          <span>Focus</span>
-          <strong>3D Perception</strong>
-        </div>
-        <div class="mini-stat">
-          <span>Domain</span>
-          <strong>Autonomous Driving</strong>
-        </div>
-        <div class="mini-stat">
-          <span>Current</span>
-          <strong>Hyundai Motor</strong>
-        </div>
-        <div class="mini-stat">
-          <span>Study</span>
-          <strong>Georgia Tech</strong>
+        <div class="cta-group">
+          <a class="pill" href="/about/">Profile</a>
+          <a class="btn-ghost" href="/projects/">Projects</a>
+          <a class="pill secondary" href="/publications/">Publications</a>
+          <div class="social-icons">
+            <a class="pill secondary" href="https://github.com/curiousLionH">GitHub</a>
+            <a class="pill secondary" href="https://www.linkedin.com/in/joohyun-lee-2b3816125">LinkedIn</a>
+          </div>
         </div>
       </div>
     </div>

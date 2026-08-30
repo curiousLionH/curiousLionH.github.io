@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #fffaf6;
@@ -313,6 +314,119 @@
     background: rgba(255,255,255,0.35);
   }
 
+  /* Header / Nav */
+  .custom-header {
+    position: sticky;
+    top: 12px;
+    z-index: 60;
+    padding: 0.6rem 0;
+  }
+
+  .header-inner {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+  }
+
+  .site-nav {
+    display:flex;
+    gap:0.85rem;
+    align-items:center;
+  }
+
+  .site-nav a {
+    padding:0.45rem 0.7rem;
+    border-radius:10px;
+    color:var(--muted);
+    font-weight:700;
+    text-decoration:none;
+    transition: all 200ms ease;
+    transform-origin:center;
+  }
+
+  .site-nav a:hover {
+    color: var(--orange);
+    background: linear-gradient(90deg, rgba(255,143,107,0.08), rgba(191,232,255,0.06));
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 18px rgba(34,40,49,0.06);
+  }
+
+  .site-title {
+    font-size:1.05rem;
+    text-transform:none;
+    color:var(--ink) !important;
+  }
+
+  /* Hover lifts for cards */
+  .section-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(99, 103, 149, 0.12);
+  }
+
+  .profile-photo:hover {
+    transform: scale(1.02) translateY(-4px);
+    transition: transform 220ms ease;
+  }
+
+  /* Small interactive cursor accent */
+  a { cursor: pointer; }
+
+  /* Fancy MZ-style additions */
+  .hero-fancy {
+    position: relative;
+    overflow: hidden;
+    padding: 3rem;
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(249,245,255,0.6));
+    box-shadow: 0 30px 80px rgba(48, 55, 102, 0.08);
+  }
+
+  .hero-fancy .title {
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Noto Sans KR', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    line-height: 0.95;
+    background: linear-gradient(90deg, #ff8f6b, #c9c2ff, #bfe8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    margin: 0 0 0.6rem;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero-fancy .lead {
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin: 0 0 1rem;
+    opacity: 0.95;
+  }
+
+  .cta-group { display:flex; gap:0.9rem; align-items:center; flex-wrap:wrap; margin-top:1rem; }
+
+  .btn-ghost {
+    padding:0.7rem 1.05rem; border-radius:999px; background:transparent; border:1px solid rgba(27,29,40,0.06);
+    color:var(--ink); font-weight:700; transition:all 220ms ease; text-decoration:none;
+  }
+
+  .btn-ghost:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(34,40,49,0.06); }
+
+  .social-icons { display:flex; gap:0.6rem; align-items:center; }
+
+  /* Reveal animations */
+  .reveal { opacity:0; transform: translateY(18px); transition: all 520ms cubic-bezier(.2,.9,.2,1); }
+  .reveal.visible { opacity:1; transform: none; }
+
+  /* Tiny cursor dot */
+  .cursor-dot { position:fixed; left:0; top:0; width:12px; height:12px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); background: linear-gradient(90deg,var(--orange),var(--peach)); mix-blend-mode:normal; z-index:9999; transition:width 120ms ease, height 120ms ease, transform 120ms ease; }
+
+
   @media (max-width: 780px) {
     .hero,
     .section-grid,
@@ -347,3 +461,28 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 {% endif %}
+
+<script>
+// Tiny cursor dot and reveal-on-scroll
+(function() {
+  try {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    document.body.appendChild(dot);
+
+    document.addEventListener('mousemove', (e) => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => { dot.style.transform = 'translate(-50%,-50%) scale(0.85)'; });
+    document.addEventListener('mouseup', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+  } catch (e) { console.warn('Enhancement script failed', e); }
+})();
+</script>
