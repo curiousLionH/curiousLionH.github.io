@@ -1,5 +1,5 @@
 # Site settings
-title: Joohyun's Research Blog
+title: Joohyun Lee
 description: 논문 리뷰, 기술 블로그, 연구 기록
 url: "https://curiousLionH.github.io"
 baseurl: ""
@@ -7,7 +7,7 @@ baseurl: ""
 # Author
 author:
   name: Lee, Joohyun
-  email: ""
+  email: "joohyun@gatech.edu"
 
 # Theme
 theme: minima
