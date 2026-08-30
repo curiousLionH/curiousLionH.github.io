@@ -9,9 +9,16 @@
       <a href="{{ '/projects/' | relative_url }}">Projects</a>
       <a href="{{ '/contact/' | relative_url }}" class="contact-link">Contact</a>
     </nav>
-    <div style="display:flex;gap:0.5rem;align-items:center;">
-      <button class="palette-btn" data-palette="aurora" aria-label="Aurora palette">Aurora</button>
-      <button class="palette-btn" data-palette="sunrise" aria-label="Sunrise palette">Sunrise</button>
+    <div class="palette-switcher" aria-hidden="false">
+      <button class="palette-swatch" data-palette="aurora" aria-label="Aurora palette">
+        <span class="swatch" style="background:linear-gradient(135deg,#c9c2ff,#bfe8ff);"></span>
+      </button>
+      <button class="palette-swatch" data-palette="sunrise" aria-label="Sunrise palette">
+        <span class="swatch" style="background:linear-gradient(135deg,#ffb98b,#fff2a8);"></span>
+      </button>
+      <button class="palette-swatch" data-palette="festival" aria-label="Festival palette">
+        <span class="swatch" style="background:linear-gradient(135deg,#ff7ab6,#7af0ff);"></span>
+      </button>
     </div>
   </div>
 </header>

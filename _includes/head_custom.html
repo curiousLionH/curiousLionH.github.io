@@ -1,24 +1,43 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #fffaf6;
-    --bg-soft: #f7f2ff;
-    --panel: rgba(255, 255, 255, 0.8);
-    --panel-strong: #ffffff;
-    --ink: #1b1d28;
-    --muted: #586074;
-    --line: rgba(80, 90, 110, 0.12);
-    --peach: #ffb98b;
-    --orange: #ff8f6b;
-    --lavender: #c9c2ff;
-    --sky: #bfe8ff;
-    --mint: #d5f7e7;
-    --butter: #fff2a8;
-    --shadow: 0 18px 40px rgba(99, 103, 149, 0.12);
-  }
+  try {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    document.body.appendChild(dot);
 
-  /* Palette presets */
-  .palette-aurora {
+    document.addEventListener('mousemove', (e) => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => { dot.style.transform = 'translate(-50%,-50%) scale(0.85)'; });
+    document.addEventListener('mouseup', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // palette switcher (delegated) - works even if buttons render later
+    function setPalette(name) {
+      document.body.classList.remove('palette-aurora','palette-sunrise','palette-festival');
+      document.body.classList.add('palette-' + name);
+      localStorage.setItem('sitePalette', name);
+      // mark active
+      document.querySelectorAll('.palette-swatch').forEach(s => s.classList.toggle('active', s.dataset.palette===name));
+    }
+
+    document.addEventListener('click', (ev) => {
+      const btn = ev.target.closest && ev.target.closest('.palette-swatch');
+      if (btn && btn.dataset && btn.dataset.palette) { setPalette(btn.dataset.palette); }
+    });
+
+    // restore saved or default
+    const saved = localStorage.getItem('sitePalette') || 'festival';
+    setPalette(saved);
+
+  } catch (e) { console.warn('Enhancement script failed', e); }
+})();
     --bg: #fffaf6;
     --bg-soft: #f7f2ff;
     --panel: rgba(255,255,255,0.85);
@@ -38,6 +57,17 @@
     --orange: #ff6b8f;
     --peach: #fff2a8;
     --accent: #bfe8ff;
+  }
+
+  .palette-festival {
+    --bg: linear-gradient(180deg,#fff8ff,#f2fff9);
+    --bg-soft: #fff6fb;
+    --panel: rgba(255,255,255,0.85);
+    --ink: #0b0b10;
+    --muted: #515a6b;
+    --orange: #ff6b8f;
+    --peach: #ffd3a6;
+    --accent: #7af0ff;
   }
 
   body {
@@ -461,6 +491,25 @@
 
   /* Tiny cursor dot */
   .cursor-dot { position:fixed; left:0; top:0; width:12px; height:12px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); background: linear-gradient(90deg,var(--orange),var(--peach)); mix-blend-mode:normal; z-index:9999; transition:width 120ms ease, height 120ms ease, transform 120ms ease; }
+
+  /* Palette swatches */
+  .palette-switcher { display:flex; gap:0.55rem; align-items:center; }
+  .palette-swatch { width:40px; height:40px; border-radius:50%; padding:6px; border: none; background:transparent; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition: transform 180ms ease; box-shadow: 0 6px 18px rgba(28,34,50,0.06); }
+  .palette-swatch .swatch { width:100%; height:100%; border-radius:50%; display:block; box-shadow: inset 0 -6px 18px rgba(0,0,0,0.06); }
+  .palette-swatch.active { transform: translateY(-4px) scale(1.06); box-shadow: 0 18px 40px rgba(34,40,49,0.10); }
+
+  /* Decorative animated blobs */
+  .hero-fancy::before,
+  .hero-fancy::after {
+    content: '';
+    position: absolute; width: 420px; height: 420px; border-radius: 50%; filter: blur(40px); opacity: 0.65; z-index: 0; transform: translate(-20%, -30%);
+    pointer-events: none;
+  }
+  .hero-fancy::before { background: radial-gradient(circle at 30% 30%, rgba(122,240,255,0.9), rgba(201,194,255,0.6)); left: -6%; top: -10%; animation: float1 8s ease-in-out infinite; }
+  .hero-fancy::after { background: radial-gradient(circle at 60% 60%, rgba(255,122,182,0.92), rgba(255,185,139,0.6)); right: -6%; bottom: -10%; animation: float2 10s ease-in-out infinite; }
+
+  @keyframes float1 { 0%{transform:translate(-22%,-30%)}50%{transform:translate(-18%,-28%)}100%{transform:translate(-22%,-30%)} }
+  @keyframes float2 { 0%{transform:translate(18%,24%)}50%{transform:translate(20%,20%)}100%{transform:translate(18%,24%)} }
 
   /* Projects grid */
   .projects-grid {
