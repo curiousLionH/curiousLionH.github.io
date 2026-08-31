@@ -14,10 +14,10 @@ permalink: /backgrounds/
 <div class="commit commit--head">
 <div class="commit__head">
 <span class="commit__hash">a3f9c21</span>
-<span class="commit__title">M.S. in Computer Science</span>
-<span class="commit__date">2024-08 → present</span>
+<span class="commit__title">M.S. in Computer Science (OMSCS)</span>
+<span class="commit__date">2024-08 → 2026-12</span>
 </div>
-<div class="commit__body">Georgia Institute of Technology — Atlanta, USA</div>
+<div class="commit__body">Georgia Institute of Technology — Atlanta, USA · graduating Fall 2026 · GPA 4.00/4.00</div>
 <div class="commit__refs"><span class="ref">HEAD &rarr; main</span></div>
 </div>
 <div class="commit">
@@ -58,18 +58,19 @@ permalink: /backgrounds/
 <div class="commit">
 <div class="commit__head">
 <span class="commit__hash">9f4c2e1</span>
-<span class="commit__title">Diffusion-based 3D point cloud registration</span>
-<span class="commit__date">2025 → 2026</span>
+<span class="commit__title">EvoReg — multi-stage point cloud registration</span>
+<span class="commit__date">2025-08 → 2026-05</span>
 </div>
-<div class="commit__body">Master's project, Georgia Tech</div>
+<div class="commit__body">Master's project, Georgia Tech · submitted to NeurIPS 2026 (under review)</div>
+<div class="commit__refs"><span class="ref ref--tag">tag: neurips-2026</span></div>
 </div>
 <div class="commit">
 <div class="commit__head">
 <span class="commit__hash">2a1b7d0</span>
-<span class="commit__title">LiDAR perception pipeline &amp; 3D MOT</span>
+<span class="commit__title">3D LiDAR-based multi-object tracking</span>
 <span class="commit__date">2021 → 2022</span>
 </div>
-<div class="commit__body">AMLAB — clustering, tracking, evaluation</div>
+<div class="commit__body">AMLAB — LiDAR pipeline, DBSCAN clustering, Kalman + Hungarian tracking, ROS 2</div>
 </div>
 <div class="commit">
 <div class="commit__head">

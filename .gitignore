@@ -10,3 +10,6 @@ vendor/
 .claude/
 .omc/
 .vscode/
+
+# Local-only working files (not for the public repo)
+portfolio/

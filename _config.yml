@@ -54,6 +54,8 @@ exclude:
   - .bundle/
   - .omc/
   - README.md
+  - portfolio/
+  - profile_pic.JPG
 
 # Categories for this blog
 # paper-review: 논문 리뷰

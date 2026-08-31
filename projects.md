@@ -10,9 +10,9 @@ permalink: /projects/
 
 <div class="project-grid">
 <article class="project-card">
-<span class="kicker">Master's Project</span>
-<h3>3D Point Cloud Registration</h3>
-<p>Diffusion-based coarse-to-fine registration for noisy and partial point clouds.</p>
+<span class="kicker">Master's Project · NeurIPS 2026 (under review)</span>
+<h3>EvoReg — Point Cloud Registration</h3>
+<p>Unified multi-stage framework for rigid and non-rigid registration, robust to noise, partial overlap, and deformation.</p>
 </article>
 <article class="project-card">
 <span class="kicker">Autonomous Driving</span>

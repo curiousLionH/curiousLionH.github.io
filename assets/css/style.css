@@ -402,6 +402,8 @@ a:hover { color: var(--yellow); }
   background: rgba(142,162,208,.1);
 }
 .ref--tag { border-color: var(--clay); color: var(--clay); background: rgba(201,143,106,.1); }
+.ref a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.ref a:hover { color: var(--text); }
 
 /* ---------- Releases ---------- */
 

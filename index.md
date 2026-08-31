@@ -15,10 +15,14 @@ title: Home
   <h2>About</h2>
   <p>
     I'm a Research Engineer working on <strong>3D perception, multi-sensor fusion, and
-    multi-object tracking</strong> for autonomous vehicles at Hyundai Motor Company, and an
-    M.S. student in Computer Science at Georgia Tech. Work spans calibration automation,
-    CUDA-based LiDAR pipelines, and end-to-end tracking frameworks — with several patent
-    applications in the autonomous-driving space.
+    multi-object tracking</strong> for autonomous vehicles at Hyundai Motor Company, with
+    several patent applications on sensor calibration and tracking-performance evaluation.
+  </p>
+  <p>
+    I'm also an Online M.S. student in Computer Science at Georgia Tech (OMSCS),
+    <strong>graduating Fall 2026</strong>. My master's project, <strong>EvoReg</strong> — a
+    unified multi-stage framework for rigid and non-rigid point cloud registration — is
+    currently under review at <strong>NeurIPS&nbsp;2026</strong>.
   </p>
   <p>
     More detail: <a href="{{ '/about/' | relative_url }}">About</a> ·
@@ -28,14 +32,37 @@ title: Home
   </p>
 </section>
 
+<section id="pulls">
+  <h2>Pull requests</h2>
+  <div class="gitlog">
+    <div class="commit commit--head">
+      <div class="commit__head">
+        <span class="commit__hash">#1</span>
+        <span class="commit__title">EvoReg: Versatile and Robust Point Cloud Registration via Multi-Stage Alignment</span>
+        <span class="commit__date">2026</span>
+      </div>
+      <div class="commit__body">
+        A single architecture covering rigid / non-rigid and supervised / self-supervised
+        registration via staged decoupling — gradient-free SE(3) search, Sinkhorn–Kabsch
+        refinement, and a conditional-VAE deformation field.
+      </div>
+      <div class="commit__refs">
+        <span class="ref">open</span>
+        <span class="ref ref--tag">NeurIPS 2026 · under review</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="branches">
   <h2>Branches</h2>
+  <p style="color:var(--muted);font-size:14px;margin:-6px 0 16px;">Research interests — see the <a href="{{ '/about/#research-interests' | relative_url }}">full list</a>.</p>
   <ul class="tags">
+    <li>research/point-cloud-registration</li>
     <li>research/3d-perception</li>
-    <li>research/lidar-processing</li>
     <li>research/multi-object-tracking</li>
     <li>research/sensor-fusion</li>
-    <li>research/point-cloud-registration</li>
+    <li>research/evolutionary-optimization</li>
     <li>research/generative-3d</li>
   </ul>
 </section>
@@ -46,10 +73,10 @@ title: Home
     <div class="commit commit--head">
       <div class="commit__head">
         <span class="commit__hash">a3f9c21</span>
-        <span class="commit__title">M.S. in Computer Science</span>
+        <span class="commit__title">M.S. in Computer Science (OMSCS)</span>
         <span class="commit__date">2024-08</span>
       </div>
-      <div class="commit__body">Georgia Institute of Technology — Atlanta, USA</div>
+      <div class="commit__body">Georgia Institute of Technology — Atlanta, USA · graduating Fall 2026</div>
       <div class="commit__refs">
         <span class="ref">HEAD &rarr; main</span>
         <span class="ref ref--tag">tag: grad-school</span>
@@ -98,16 +125,17 @@ title: Home
     <div class="release">
       <span class="release__ver">v-engineering</span>
       <ul>
-        <li>CUDA-based LiDAR interfaces for high-throughput perception</li>
         <li>Camera-based end-to-end multi-object tracking frameworks</li>
-        <li class="changed">Calibration automation and perception-system validation pipelines</li>
+        <li>End-to-end 3D multi-object tracking for autonomous-driving perception</li>
+        <li class="changed">Custom tracking-performance evaluation pipeline and metrics</li>
       </ul>
     </div>
     <div class="release">
       <span class="release__ver">v-research</span>
       <ul>
-        <li>Diffusion-based coarse-to-fine 3D point cloud registration (M.S. project)</li>
-        <li>LiDAR perception pipeline and 3D MOT for autonomous delivery robotics</li>
+        <li>EvoReg — multi-stage rigid / non-rigid point cloud registration (NeurIPS 2026, under review)</li>
+        <li>3D LiDAR MOT pipeline: RANSAC ground removal, DBSCAN clustering, Kalman + Hungarian tracking</li>
+        <li>Indoor autonomous delivery robot — SLAM mapping and TEB local planning</li>
       </ul>
     </div>
   </div>
