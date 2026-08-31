@@ -1,6 +1,10 @@
 ---
 layout: home
-title: Home
+title: "Joohyun Lee — Research Engineer"
+description: >-
+  Research Engineer in autonomous driving · OMSCS @ Georgia Tech (Fall 2026). Point cloud
+  registration & reconstruction, 3D vision, multi-object tracking, robotics, and generative
+  models. Publications, projects, and notes.
 ---
 
 <div class="changelog-intro">

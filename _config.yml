@@ -1,6 +1,9 @@
 # Site settings
 title: Joohyun Lee
-description: 논문 리뷰, 기술 블로그, 연구 기록
+description: >-
+  Portfolio of Joohyun Lee — Research Engineer in autonomous driving and an OMSCS student
+  at Georgia Tech. Point cloud registration & reconstruction, 3D vision, multi-object
+  tracking, and robotics. Publications, projects, and notes.
 url: "https://curiousLionH.github.io"
 baseurl: ""
 
@@ -8,6 +11,9 @@ baseurl: ""
 author:
   name: Lee, Joohyun
   email: "joohyun@gatech.edu"
+
+# Social card / SEO
+image: /assets/img/profile_pic.jpg
 
 # Theme
 theme: minima
@@ -37,6 +43,10 @@ math: true
 
 # Collections & defaults
 defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/profile_pic.jpg
   - scope:
       path: ""
       type: "posts"

@@ -27,12 +27,22 @@ and non-rigid point cloud registration, currently **under review at NeurIPS 2026
 
 ## Research interests {#research-interests}
 
-- Point cloud registration & reconstruction
-- 3D vision
-- Multi-object tracking
-- Robotics
-- Autonomous driving
-- Generative models
+- **Point cloud registration & reconstruction** — aligning and reconstructing 3D point
+  sets under noise, partial overlap, and non-rigid deformation; coarse-to-fine pipelines
+  that pair gradient-free global search with learned local refinement (the focus of my
+  master's project, EvoReg).
+- **3D vision** — recovering geometric structure from point clouds and RGB-D / range data:
+  correspondence estimation, 6-DoF pose, and shape modeling that generalize across
+  datasets and object categories.
+- **Multi-object tracking** — LiDAR- and camera-based tracking in dynamic scenes: data
+  association, track lifecycle management, and metrics for quantifying tracking
+  performance (the subject of one of my patent applications).
+- **Robotics** — perception and navigation for mobile robots — SLAM-based mapping, local
+  trajectory planning, and real-time collision avoidance for autonomous ground robots.
+- **Autonomous driving** — full-stack vehicle perception: multi-sensor calibration,
+  LiDAR / radar / camera fusion, and 3D detection and tracking for the self-driving stack.
+- **Generative models** — diffusion and variational models for 3D geometry: predicting
+  deformation fields, denoising point sets, and generating plausible shape completions.
 
 ## Quick links
 
