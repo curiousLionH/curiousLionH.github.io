@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<div class="layout">
+  <aside class="aside">
+    <img class="aside__photo" src="{{ '/assets/img/profile_pic.jpg' | relative_url }}" alt="Joohyun Lee">
+    <div>
+      <h1 class="aside__name">Joohyun Lee</h1>
+      <div class="aside__meta">
+        M.S. Computer Science · Georgia Tech<br>
+        Research Engineer · Autonomous Driving
+      </div>
+    </div>
+    <p class="aside__tagline">Building 3D perception, sensor fusion, and tracking systems for autonomous vehicles — from Atlanta, United States.</p>
+    <hr class="rule">
+    <nav class="aside__nav">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#background">Background</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#posts">Posts</a>
+    </nav>
+    <div class="socials">
+      <a href="mailto:joohyun@gatech.edu" title="Email">@</a>
+      <a href="https://github.com/curiousLionH" target="_blank" rel="noopener" title="GitHub">gh</a>
+      <a href="https://www.linkedin.com/in/joohyun-lee-2b3816125" target="_blank" rel="noopener" title="LinkedIn">in</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="home-sections">
+      {{ content }}
+    </div>
+  </main>
+</div>

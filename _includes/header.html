@@ -1,24 +1,18 @@
-<header class="site-header custom-header">
-  <div class="wrapper header-inner">
-    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+{%- assign nav_pages = "About,/about/|Backgrounds,/backgrounds/|Publications,/publications/|Projects,/projects/|Contact,/contact/" | split: "|" -%}
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand__sigil">$</span>
+      <span class="brand__name">Joohyun Lee</span>
+      <span class="brand__role">— Research Engineer</span>
+    </a>
     <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="{{ '/about/' | relative_url }}">About</a>
-      <a href="{{ '/backgrounds/' | relative_url }}">Backgrounds</a>
-      <a href="{{ '/publications/' | relative_url }}">Publications</a>
-      <a href="{{ '/projects/' | relative_url }}">Projects</a>
-      <a href="{{ '/contact/' | relative_url }}" class="contact-link">Contact</a>
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-active"{% endif %}>Home</a>
+      {%- for item in nav_pages -%}
+        {%- assign parts = item | split: "," -%}
+        <a href="{{ parts[1] | relative_url }}"{% if page.url contains parts[1] %} class="is-active"{% endif %}>{{ parts[0] }}</a>
+      {%- endfor -%}
+      <a href="{{ '/blog/' | relative_url }}" class="nav-btn{% if page.url contains '/blog' or page.layout == 'post' %} is-active{% endif %}">Blog</a>
     </nav>
-    <div class="palette-switcher" aria-hidden="false">
-      <button class="palette-swatch" data-palette="aurora" aria-label="Aurora palette">
-        <span class="swatch" style="background:linear-gradient(135deg,#c9c2ff,#bfe8ff);"></span>
-      </button>
-      <button class="palette-swatch" data-palette="sunrise" aria-label="Sunrise palette">
-        <span class="swatch" style="background:linear-gradient(135deg,#ffb98b,#fff2a8);"></span>
-      </button>
-      <button class="palette-swatch" data-palette="festival" aria-label="Festival palette">
-        <span class="swatch" style="background:linear-gradient(135deg,#ff7ab6,#7af0ff);"></span>
-      </button>
-    </div>
   </div>
 </header>
