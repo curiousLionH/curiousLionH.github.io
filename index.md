@@ -59,11 +59,12 @@ title: Home
   <p style="color:var(--muted);font-size:14px;margin:-6px 0 16px;">Research interests — see the <a href="{{ '/about/#research-interests' | relative_url }}">full list</a>.</p>
   <ul class="tags">
     <li>research/point-cloud-registration</li>
-    <li>research/3d-perception</li>
+    <li>research/point-cloud-reconstruction</li>
+    <li>research/3d-vision</li>
     <li>research/multi-object-tracking</li>
-    <li>research/sensor-fusion</li>
-    <li>research/evolutionary-optimization</li>
-    <li>research/generative-3d</li>
+    <li>research/robotics</li>
+    <li>research/autonomous-driving</li>
+    <li>research/generative-models</li>
   </ul>
 </section>
 

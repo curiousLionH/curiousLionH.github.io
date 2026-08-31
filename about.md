@@ -27,12 +27,12 @@ and non-rigid point cloud registration, currently **under review at NeurIPS 2026
 
 ## Research interests {#research-interests}
 
-- **Point cloud registration** — rigid and non-rigid alignment, robustness to noise, partial overlap, and deformation
-- **3D perception for autonomous driving** — LiDAR/camera perception, multi-object tracking
-- **Multi-sensor fusion** — LiDAR, radar, and camera integration for perception
-- **Gradient-free / evolutionary optimization** — SE(3) pose search, coarse-to-fine alignment
-- **Generative models for 3D geometry** — diffusion and VAE-based deformation modeling
-- **Tracking evaluation** — metrics and protocols for multi-object tracking performance
+- Point cloud registration & reconstruction
+- 3D vision
+- Multi-object tracking
+- Robotics
+- Autonomous driving
+- Generative models
 
 ## Quick links
 
