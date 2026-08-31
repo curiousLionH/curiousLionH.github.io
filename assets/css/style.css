@@ -2,23 +2,31 @@
 ---
 /* ============================================================
    Joohyun Lee — portfolio
-   Terminal / monospace aesthetic, dark.
+   "CHANGELOG x git history" — cool slate, low-saturation.
    ============================================================ */
 
 :root {
-  --bg:        #0a0e12;
-  --surface:   #121820;
-  --surface-2: #0e141a;
-  --border:    #26313a;
-  --border-soft:#1c252c;
-  --text:      #e2eaea;
-  --muted:     #8a9799;
-  --dim:       #566268;
-  --green:     #3ad693;
-  --green-dim: #2a9d6d;
-  --orange:    #ff6a2b;
-  --yellow:    #f3cb00;
-  --red:       #d73337;
+  --bg:        #171b21;
+  --surface:   #1e242c;
+  --surface-2: #1a1f26;
+  --border:    #2c343d;
+  --border-soft:#242b33;
+  --text:      #dfe3e8;
+  --muted:     #8b939e;
+  --dim:       #5b6572;
+
+  --accent:     #8ea2d0;   /* dusty periwinkle — links, nodes, active */
+  --accent-dim: #5f6f96;
+  --clay:       #c98f6a;   /* hashes, tags */
+  --add:        #6f9f7f;   /* changelog "Added" */
+  --change:     #c2a25f;   /* changelog "Changed" */
+
+  /* legacy aliases (kept so older rules still resolve) */
+  --green:     var(--accent);
+  --green-dim: var(--accent-dim);
+  --orange:    var(--clay);
+  --yellow:    var(--change);
+  --red:       #cf7070;
 
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
@@ -55,7 +63,7 @@ a {
 }
 a:hover { color: var(--yellow); }
 
-::selection { background: var(--green); color: #04110b; }
+::selection { background: var(--accent); color: #12151b; }
 
 /* ---------- Layout scaffold ---------- */
 
@@ -101,9 +109,17 @@ a:hover { color: var(--yellow); }
   flex-shrink: 0;
 }
 .brand:hover { color: var(--text); }
-.brand__sigil { color: var(--green); font-weight: 700; }
 .brand__name  { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.brand__branch {
+  font-size: 11px;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  border-radius: 999px;
+  padding: 1px 8px;
+  align-self: center;
+}
 .brand__role  { font-size: 11px; color: var(--muted); }
+.brand__role::before { content: "· "; color: var(--dim); }
 
 .site-nav {
   display: flex;
@@ -125,13 +141,13 @@ a:hover { color: var(--yellow); }
   border-bottom: 2px solid var(--green);
 }
 .site-nav a.nav-btn {
-  color: #05130c;
-  background: var(--green);
+  color: #10131a;
+  background: var(--accent);
   padding: 8px 15px;
   font-weight: 600;
   border-bottom: none;
 }
-.site-nav a.nav-btn:hover { background: var(--yellow); color: #131000; }
+.site-nav a.nav-btn:hover { background: var(--clay); color: #1a1210; }
 
 /* ---------- Body columns ---------- */
 
@@ -199,8 +215,8 @@ a:hover { color: var(--yellow); }
   color: var(--muted);
 }
 .aside__nav a:hover { color: var(--text); }
-.aside__nav a::before { content: "—"; color: var(--dim); }
-.aside__nav a:hover::before { color: var(--green); }
+.aside__nav a::before { content: "\2022"; color: var(--dim); font-size: 9px; }
+.aside__nav a:hover::before { color: var(--accent); }
 
 .socials { display: flex; gap: 9px; flex-wrap: wrap; }
 .socials a {
@@ -243,33 +259,35 @@ a:hover { color: var(--yellow); }
 
 .home-sections > section > h2:first-child,
 .section-head {
-  font-size: 13px;
-  text-transform: lowercase;
-  letter-spacing: .06em;
-  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--text);
   margin: 0 0 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
 }
 .home-sections > section > h2:first-child::before,
 .section-head::before {
-  content: "$ ";
-  color: var(--green);
+  content: "## ";
+  color: var(--dim);
+  font-weight: 400;
 }
 
 /* generic prose headings inside pages */
 .prose h1 { font-size: 26px; margin: 0 0 8px; }
 .prose h2 {
-  font-size: 13px;
-  text-transform: lowercase;
-  letter-spacing: .06em;
-  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--text);
   margin: 44px 0 18px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
 }
-.prose h2::before { content: "$ "; color: var(--green); }
+.prose h2::before { content: "## "; color: var(--dim); font-weight: 400; }
 .prose h3 { font-size: 16px; margin: 28px 0 10px; color: var(--text); }
+.prose h3::before { content: "### "; color: var(--dim); font-weight: 400; font-family: var(--mono); font-size: .85em; }
 
 .prose > p:first-of-type { margin-top: 0; }
 .prose p { margin: 0 0 16px; }
@@ -287,57 +305,138 @@ a:hover { color: var(--yellow); }
 
 /* ---------- Home: intro line ---------- */
 
-.intro-line {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--dim);
-  margin-bottom: 34px;
-}
-.intro-line .blink {
-  color: var(--green);
-  animation: blink 1.1s step-end infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
+/* ---------- Changelog intro ---------- */
 
-/* ---------- Research interest tags ---------- */
+.changelog-intro { margin-bottom: 40px; }
+.changelog-intro h1 {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+.changelog-intro h1::before { content: "# "; color: var(--dim); font-weight: 400; }
+.changelog-intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ---------- Branch chips (research interests) ---------- */
 
 .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .tags li {
   font-family: var(--mono);
   font-size: 12px;
-  padding: 6px 11px;
+  padding: 6px 11px 6px 26px;
+  position: relative;
   border: 1px solid var(--border);
   color: var(--muted);
   background: var(--surface-2);
 }
-.tags li:hover { border-color: var(--green); color: var(--text); }
+.tags li::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--accent-dim);
+}
+.tags li:hover { border-color: var(--accent-dim); color: var(--text); }
+.tags li:hover::before { border-color: var(--accent); }
 
-/* ---------- Timeline / list rows ---------- */
+/* ---------- git-log rail (history) ---------- */
 
-.entry-list { display: flex; flex-direction: column; }
-.entry {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 18px;
-  padding: 16px 0;
+.gitlog { position: relative; padding-left: 24px; }
+.gitlog::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--border);
+}
+.commit {
+  position: relative;
+  padding: 15px 0;
   border-bottom: 1px solid var(--border-soft);
 }
-.entry:last-child { border-bottom: 0; }
-.entry__when {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--green-dim);
-  padding-top: 2px;
-  min-width: 0;
+.commit:last-child { border-bottom: 0; }
+.commit::before {
+  content: "";
+  position: absolute;
+  left: -23px;
+  top: 19px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
 }
-.entry__what { color: var(--muted); min-width: 0; }
-.entry__what strong { display: block; color: var(--text); font-weight: 600; margin-bottom: 2px; }
+.commit--head::before { background: var(--accent); box-shadow: 0 0 0 3px rgba(142,162,208,.15); }
+.commit__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+}
+.commit__hash { font-family: var(--mono); font-size: 12px; color: var(--clay); }
+.commit__title { font-weight: 600; color: var(--text); }
+.commit__date { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-left: auto; }
+.commit__body { color: var(--muted); font-size: 14px; margin-top: 3px; }
+.commit__refs { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+.ref {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .02em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  background: rgba(142,162,208,.1);
+}
+.ref--tag { border-color: var(--clay); color: var(--clay); background: rgba(201,143,106,.1); }
 
-/* ---------- News log ---------- */
+/* ---------- Releases ---------- */
 
-.newslog { display: flex; flex-direction: column; gap: 12px; font-family: var(--mono); font-size: 13px; }
-.newslog li { display: grid; grid-template-columns: 92px 1fr; gap: 14px; color: var(--muted); }
-.newslog .date { color: var(--dim); }
+.releases { display: flex; flex-direction: column; gap: 22px; }
+.release__ver {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  padding: 2px 9px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.release ul { margin: 0; padding-left: 20px; list-style: none; }
+.release li { margin: 0 0 7px; color: var(--muted); position: relative; padding-left: 20px; }
+.release li::before { content: "+"; position: absolute; left: 0; color: var(--add); font-family: var(--mono); font-weight: 700; }
+.release li.changed::before { content: "~"; color: var(--change); }
+
+/* ---------- Commit list (recent posts) ---------- */
+
+.commit-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.commit-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.commit-list li:last-child { border-bottom: 0; }
+.commit-list .h { color: var(--clay); flex-shrink: 0; }
+.commit-list a { color: var(--text); font-weight: 500; min-width: 0; }
+.commit-list a:hover { color: var(--accent); }
+.commit-list .date { color: var(--dim); margin-left: auto; white-space: nowrap; flex-shrink: 0; }
 
 /* ---------- Post list ---------- */
 
@@ -380,6 +479,7 @@ a:hover { color: var(--yellow); }
   color: var(--green);
 }
 .project-card h3 { font-size: 15px; margin: 0; font-family: var(--sans); font-weight: 600; }
+.project-card h3::before { content: none; }
 .project-card p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
 
 /* ---------- Contact strip ---------- */
@@ -393,7 +493,8 @@ a:hover { color: var(--yellow); }
   font-size: 13px;
   color: var(--muted);
 }
-.callout a { color: var(--green); }
+.callout a { color: var(--accent); }
+.callout strong { color: var(--text); font-weight: 600; }
 
 /* ---------- Code / syntax ---------- */
 
@@ -556,8 +657,9 @@ mjx-container { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .site-nav { gap: 12px 14px; }
   .site-nav a { font-size: 11px; }
   .main { padding: 32px 20px 64px; }
-  .entry { grid-template-columns: 1fr; gap: 4px; }
-  .newslog li { grid-template-columns: 1fr; gap: 2px; }
+  .commit__date { margin-left: 0; flex-basis: 100%; order: 3; }
+  .commit-list li { flex-wrap: wrap; gap: 4px 12px; }
+  .commit-list .date { margin-left: 0; }
   .site-footer__inner { padding: 20px; }
   .brand__role { display: none; }
 }

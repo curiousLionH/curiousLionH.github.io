@@ -6,7 +6,7 @@ permalink: /projects/
 
 # Projects
 
-Selected engineering and research projects. More write-ups live on the [blog](/blog/).
+`git branch -a` — selected engineering and research projects. More write-ups live on the [blog](/blog/).
 
 <div class="project-grid">
 <article class="project-card">

@@ -6,13 +6,14 @@ permalink: /blog/
 
 # Blog
 
-Reading notes, paper reviews, and engineering write-ups.
+`git log blog/` — reading notes, paper reviews, and engineering write-ups.
 
-<ul class="post-list">
+<ul class="commit-list">
 {% for post in site.posts %}
   <li>
+    <span class="h">blog/{{ post.categories | first | default: "note" }}</span>
     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <span class="date">{{ post.date | date: "%Y.%m.%d" }}</span>
+    <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
   </li>
 {% endfor %}
 </ul>

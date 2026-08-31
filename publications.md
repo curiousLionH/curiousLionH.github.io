@@ -4,6 +4,10 @@ title: Publications
 permalink: /publications/
 ---
 
+# Publications
+
+`git tag --list` — patents and selected outputs.
+
 ## Patents
 
 - **Method and apparatus for evaluating object tracking performance**  
