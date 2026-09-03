@@ -102,7 +102,7 @@ description: >-
         <span class="commit__title">Research Intern</span>
         <span class="commit__date">2022-07</span>
       </div>
-      <div class="commit__body">Samsung Research — Robot Center, GEMS Lab</div>
+      <div class="commit__body">Samsung Research — Robot Center, GEMS Lab · IMU-based action recognition for wearable robots</div>
     </div>
     <div class="commit">
       <div class="commit__head">

@@ -48,7 +48,7 @@ permalink: /backgrounds/
 <span class="commit__title">University Student Intern</span>
 <span class="commit__date">2022-07 → 2022-08</span>
 </div>
-<div class="commit__body">Samsung Research — Robot Center, GEMS Lab, Seoul</div>
+<div class="commit__body">Samsung Research — Robot Center, GEMS Lab, Seoul · IMU-based boxing-action recognition for a wearable robot</div>
 </div>
 </div>
 
