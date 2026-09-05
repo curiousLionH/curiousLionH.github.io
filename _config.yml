@@ -65,6 +65,7 @@ exclude:
   - .omc/
   - README.md
   - portfolio/
+  - paper_review/
   - profile_pic.JPG
 
 # Categories for this blog
