@@ -15,6 +15,11 @@ permalink: /projects/
 <p>Unified multi-stage framework for rigid and non-rigid registration, robust to noise, partial overlap, and deformation.</p>
 </article>
 <article class="project-card">
+<span class="kicker">Hyundai Motor Company · Research Engineer</span>
+<h3>Perception &amp; Tracking for Autonomous Driving</h3>
+<p>Camera-based and end-to-end 3D multi-object tracking frameworks, a custom tracking-performance evaluation pipeline, and a CUDA-based LiDAR interface in Python for high-throughput LiDAR data processing. Camera/LiDAR tracking and evaluation work shipped in Hyundai's autonomous-driving model, <a href="https://www.youtube.com/watch?v=-7BEzmdrlcU" target="_blank" rel="noopener">Atria AI</a>; the CUDA LiDAR interface supports the perception stack behind Hyundai's <a href="https://www.hyundaimotorgroup.com/ko/story/CONT0000000000002058" target="_blank" rel="noopener">RoboTaxi</a>.</p>
+</article>
+<article class="project-card">
 <span class="kicker">Research Co-op · AMLAB</span>
 <h3>3D LiDAR-Based Multi-Object Tracking</h3>
 <p>Real-time 3D MOT for autonomous-vehicle perception — RANSAC ground removal, voxel downsampling, DBSCAN clustering, and a Kalman + Hungarian tracker, integrated in ROS 2.</p>
