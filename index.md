@@ -133,7 +133,14 @@ description: >-
         <li>Camera-based end-to-end multi-object tracking frameworks</li>
         <li>End-to-end 3D multi-object tracking for autonomous-driving perception</li>
         <li class="changed">Custom tracking-performance evaluation pipeline and metrics</li>
+        <li>Built a CUDA-based LiDAR interface in Python for high-throughput LiDAR data processing</li>
       </ul>
+      <p class="release__note">
+        Camera/LiDAR tracking &amp; evaluation pipeline &rarr; shipped in Hyundai's autonomous-driving
+        model, <a href="https://www.youtube.com/watch?v=-7BEzmdrlcU" target="_blank" rel="noopener">Atria AI</a>.
+        CUDA LiDAR interface &rarr; supports the perception stack behind Hyundai's
+        <a href="https://www.hyundaimotorgroup.com/ko/story/CONT0000000000002058" target="_blank" rel="noopener">RoboTaxi</a>.
+      </p>
     </div>
     <div class="release">
       <span class="release__ver">v-research</span>
