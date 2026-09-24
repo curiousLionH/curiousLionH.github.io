@@ -405,6 +405,101 @@ a:hover { color: var(--yellow); }
 .ref a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .ref a:hover { color: var(--text); }
 
+/* ---------- Vitae timeline (alternating, centered rail) ---------- */
+
+.vitae { position: relative; list-style: none; margin: 28px 0 0; padding: 4px 0 0; }
+.vitae::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border);
+  transform: translateX(-1px);
+}
+.vitae__item { position: relative; width: 50%; margin: 0; padding-bottom: 32px; }
+.vitae__item:last-child { padding-bottom: 0; }
+.vitae .vitae__item--l { margin: 0 50% 0 0; padding-right: 40px; text-align: right; }
+.vitae .vitae__item--r { margin: 0 0 0 50%; padding-left: 40px; text-align: left; }
+
+.vitae__item::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  z-index: 2;
+}
+.vitae__item--l::before { right: -6px; }
+.vitae__item--r::before { left: -6px; }
+.vitae__item--head::before { background: var(--accent); box-shadow: 0 0 0 3px rgba(142,162,208,.15); }
+
+.vitae__flag {
+  display: inline-block;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.vitae__hash { font-family: var(--mono); font-size: 12px; color: var(--clay); margin-right: 7px; }
+.vitae__date {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  margin-top: 7px;
+}
+.vitae__body { margin: 10px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.vitae__body .vitae__note {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 12.5px;
+  color: var(--dim);
+  line-height: 1.6;
+}
+.vitae__note-label {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--accent);
+  margin-right: 7px;
+}
+.vitae__refs { margin-top: 9px; display: flex; gap: 6px; flex-wrap: wrap; }
+.vitae__item--l .vitae__refs { justify-content: flex-end; }
+
+@media (max-width: 700px) {
+  .vitae { padding-left: 24px; }
+  .vitae::before { left: 5px; transform: none; }
+  .vitae .vitae__item,
+  .vitae .vitae__item--l,
+  .vitae .vitae__item--r {
+    width: auto;
+    margin: 0;
+    padding: 0 0 28px;
+    text-align: left;
+  }
+  .vitae__item--l::before,
+  .vitae__item--r::before {
+    left: -23px;
+    right: auto;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+  }
+  .vitae__item--l .vitae__refs { justify-content: flex-start; }
+}
+
 /* ---------- Releases ---------- */
 
 .releases { display: flex; flex-direction: column; gap: 22px; }
