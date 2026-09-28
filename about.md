@@ -23,26 +23,31 @@ evaluation.
 
 I'm completing the Online M.S. in Computer Science (OMSCS) at Georgia Tech, **graduating
 Fall 2026**. My master's project is **EvoReg**, a unified multi-stage framework for rigid
-and non-rigid point cloud registration, currently **under review at NeurIPS 2026**.
+and non-rigid point cloud registration, currently **under review at ICLR 2027**.
+
+My research interests lie in robot learning and human–robot interaction, with a focus on how
+robots can adapt to changing environments and human intentions. I am interested in how robots
+reconcile new observations with memory, recover from failures, and adjust their behavior when
+instructions change. More broadly, I aim to develop robots that learn from human feedback over
+time, reducing the need for repeated assistance while retaining previously acquired skills.
 
 ## Research interests {#research-interests}
 
-- **Point cloud registration & reconstruction** — aligning and reconstructing 3D point
-  sets under noise, partial overlap, and non-rigid deformation; coarse-to-fine pipelines
-  that pair gradient-free global search with learned local refinement (the focus of my
-  master's project, EvoReg).
-- **3D vision** — recovering geometric structure from point clouds and RGB-D / range data:
-  correspondence estimation, 6-DoF pose, and shape modeling that generalize across
-  datasets and object categories.
-- **Multi-object tracking** — LiDAR- and camera-based tracking in dynamic scenes: data
-  association, track lifecycle management, and metrics for quantifying tracking
-  performance (the subject of one of my patent applications).
-- **Robotics** — perception and navigation for mobile robots — SLAM-based mapping, local
-  trajectory planning, and real-time collision avoidance for autonomous ground robots.
+- **Robot learning** — learning manipulation and control policies from demonstrations and
+  interaction data that generalize beyond the training distribution.
+- **Human-robot interaction** — robots that perceive, interpret, and respond to people
+  safely and naturally in shared environments.
+- **Embodied AI** — agents that ground perception, reasoning, and action in the physical
+  world.
+- **Multimodal learning** — fusing vision, language, depth / LiDAR, and proprioception into
+  shared representations.
 - **Autonomous driving** — full-stack vehicle perception: multi-sensor calibration,
-  LiDAR / radar / camera fusion, and 3D detection and tracking for the self-driving stack.
-- **Generative models** — diffusion and variational models for 3D geometry: predicting
-  deformation fields, denoising point sets, and generating plausible shape completions.
+  LiDAR / camera fusion, and 3D detection and tracking for the self-driving stack.
+- **3D perception** — point cloud registration and reconstruction, 3D detection, and
+  multi-object tracking under noise, partial overlap, and deformation (the focus of my
+  master's project, EvoReg).
+- **Vision-language-action models** — foundation models that map visual observations and
+  language instructions directly to robot actions.
 
 ## Quick links
 

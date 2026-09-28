@@ -10,7 +10,7 @@ permalink: /projects/
 
 <div class="project-grid">
 <article class="project-card">
-<span class="kicker">Master's Project · NeurIPS 2026 (under review)</span>
+<span class="kicker">Master's Project · ICLR 2027 (under review)</span>
 <h3>EvoReg — Point Cloud Registration</h3>
 <p>Unified multi-stage framework for rigid and non-rigid registration, robust to noise, partial overlap, and deformation.</p>
 </article>

@@ -15,7 +15,7 @@ picture, see the <a href="/assets/papers/CV_JoohyunLee.pdf" target="_blank" rel=
 <span class="vitae__date">2024-08 → present</span>
 <div class="vitae__body">
 Georgia Institute of Technology — Atlanta, USA · graduating Fall 2026 · GPA 4.00/4.00
-<p class="vitae__note"><span class="vitae__note-label">Projects</span>EvoReg — a unified multi-stage framework for rigid and non-rigid point cloud registration, submitted to NeurIPS 2026 (under review); LatticeSpike — real-time token-level hallucination detection via box embeddings and spiking dynamics, submitted to ICLR 2027 (under review). Both with Georgia Tech's Human-Augmented Analytics Group.</p>
+<p class="vitae__note"><span class="vitae__note-label">Projects</span>EvoReg — a unified multi-stage framework for rigid and non-rigid point cloud registration, submitted to ICLR 2027 (under review); LatticeSpike — real-time token-level hallucination detection via box embeddings and spiking dynamics, submitted to ICLR 2027 (under review). Both with Georgia Tech's Human-Augmented Analytics Group.</p>
 </div>
 <div class="vitae__refs"><span class="ref">HEAD &rarr; main</span></div>
 </li>

@@ -11,7 +11,7 @@ permalink: /publications/
 ## Preprints / under review
 
 - **EvoReg: Versatile and Robust Point Cloud Registration via Multi-Stage Alignment**
-  Joohyun Lee (master's project, Georgia Tech). Submitted to **NeurIPS 2026** — under review.
+  Joohyun Lee (master's project, Georgia Tech). Submitted to **ICLR 2027** — under review.
   A single architecture spanning rigid / non-rigid and supervised / self-supervised
   registration via staged decoupling: gradient-free CMA-ES SE(3) search, iterative
   Sinkhorn–Kabsch refinement, a residual rigid head, and a conditional-VAE deformation

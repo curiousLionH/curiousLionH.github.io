@@ -2,9 +2,9 @@
 layout: home
 title: "Joohyun Lee — Research Engineer"
 description: >-
-  Research Engineer in autonomous driving · OMSCS @ Georgia Tech (Fall 2026). Point cloud
-  registration & reconstruction, 3D vision, multi-object tracking, robotics, and generative
-  models. Publications, projects, and notes.
+  Research Engineer in autonomous driving · OMSCS @ Georgia Tech (Fall 2026). Robot learning,
+  human–robot interaction, embodied AI, multimodal learning, autonomous driving, 3D perception,
+  and vision-language-action models. Publications, projects, and notes.
 ---
 
 <div class="changelog-intro">
@@ -26,7 +26,15 @@ description: >-
     I'm also an Online M.S. student in Computer Science at Georgia Tech (OMSCS),
     <strong>graduating Fall 2026</strong>. My master's project, <strong>EvoReg</strong> — a
     unified multi-stage framework for rigid and non-rigid point cloud registration — is
-    currently under review at <strong>NeurIPS&nbsp;2026</strong>.
+    currently under review at <strong>ICLR&nbsp;2027</strong>.
+  </p>
+  <p>
+    My research interests lie in robot learning and human–robot interaction, with a focus on
+    how robots can adapt to changing environments and human intentions. I am interested in how
+    robots reconcile new observations with memory, recover from failures, and adjust their
+    behavior when instructions change. More broadly, I aim to develop robots that learn from
+    human feedback over time, reducing the need for repeated assistance while retaining
+    previously acquired skills.
   </p>
   <p>
     More detail: <a href="{{ '/about/' | relative_url }}">About</a> ·
@@ -52,7 +60,7 @@ description: >-
       </div>
       <div class="commit__refs">
         <span class="ref">open</span>
-        <span class="ref ref--tag">NeurIPS 2026 · under review</span>
+        <span class="ref ref--tag">ICLR 2027 · under review</span>
       </div>
     </div>
   </div>
@@ -62,13 +70,13 @@ description: >-
   <h2>Branches</h2>
   <p style="color:var(--muted);font-size:14px;margin:-6px 0 16px;">Research interests — see the <a href="{{ '/about/#research-interests' | relative_url }}">full list</a>.</p>
   <ul class="tags">
-    <li>research/point-cloud-registration</li>
-    <li>research/point-cloud-reconstruction</li>
-    <li>research/3d-vision</li>
-    <li>research/multi-object-tracking</li>
-    <li>research/robotics</li>
+    <li>research/robot-learning</li>
+    <li>research/human-robot-interaction</li>
+    <li>research/embodied-ai</li>
+    <li>research/multimodal-learning</li>
     <li>research/autonomous-driving</li>
-    <li>research/generative-models</li>
+    <li>research/3d-perception</li>
+    <li>research/vision-language-action</li>
   </ul>
 </section>
 
@@ -138,7 +146,7 @@ description: >-
     <div class="release">
       <span class="release__ver">v-research</span>
       <ul>
-        <li>EvoReg — multi-stage rigid / non-rigid point cloud registration (NeurIPS 2026, under review)</li>
+        <li>EvoReg — multi-stage rigid / non-rigid point cloud registration (ICLR 2027, under review)</li>
         <li>3D LiDAR MOT pipeline: RANSAC ground removal, DBSCAN clustering, Kalman + Hungarian tracking</li>
         <li>Indoor autonomous delivery robot — SLAM mapping and TEB local planning</li>
       </ul>
