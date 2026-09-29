@@ -10,7 +10,7 @@ permalink: /projects/
 
 <div class="project-grid">
 <article class="project-card project-card--open" data-project="evoreg" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-evoreg">
-<figure class="project-card__media"><img src="{{ '/assets/img/portfolio/evoreg_thumb.jpg' | relative_url }}" alt="Rigidly and non-rigidly aligned point clouds produced by EvoReg" loading="lazy"></figure>
+<figure class="project-card__media"><img src="{{ '/assets/img/portfolio/evoreg_pipeline.jpg' | relative_url }}" alt="EvoReg architecture overview (paper Figure 1)" loading="lazy"></figure>
 <span class="kicker">Master's Project · ICLR 2027 (under review)</span>
 <h3>EvoReg — Point Cloud Registration</h3>
 <p>Unified multi-stage framework for rigid and non-rigid registration, robust to noise, partial overlap, and deformation.</p>
