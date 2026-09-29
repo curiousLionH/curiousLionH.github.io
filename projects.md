@@ -9,10 +9,12 @@ permalink: /projects/
 `git branch -a` — selected engineering and research projects. More write-ups live on the [blog](/blog/).
 
 <div class="project-grid">
-<article class="project-card">
+<article class="project-card project-card--open" data-project="evoreg" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-evoreg">
+<figure class="project-card__media"><img src="{{ '/assets/img/portfolio/evoreg_thumb.jpg' | relative_url }}" alt="Rigidly and non-rigidly aligned point clouds produced by EvoReg" loading="lazy"></figure>
 <span class="kicker">Master's Project · ICLR 2027 (under review)</span>
 <h3>EvoReg — Point Cloud Registration</h3>
 <p>Unified multi-stage framework for rigid and non-rigid registration, robust to noise, partial overlap, and deformation.</p>
+<span class="project-card__more">View details</span>
 </article>
 <article class="project-card">
 <span class="kicker">Hyundai Motor Company · Research Engineer</span>
@@ -29,10 +31,12 @@ permalink: /projects/
 <h3>Indoor Autonomous Delivery Robot</h3>
 <p>ROS-based delivery robot with depth-camera perception, Hector SLAM mapping, and TEB local planning for navigation in structured indoor spaces.</p>
 </article>
-<article class="project-card">
+<article class="project-card project-card--open" data-project="wearable" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-wearable">
+<figure class="project-card__media"><img src="{{ '/assets/img/portfolio/samsung_thumb.jpg' | relative_url }}" alt="The six boxing punches recognized: straight, hook, and uppercut for each hand" loading="lazy"></figure>
 <span class="kicker">Samsung Research · Intern</span>
 <h3>Wearable-Robot Action Recognition</h3>
 <p>Real-time boxing-motion recognition from wrist-worn IMUs for a wearable robot — EWMA smoothing, feature engineering, and SVM classification (up to 100% test accuracy).</p>
+<span class="project-card__more">View details</span>
 </article>
 <article class="project-card">
 <span class="kicker">Competition · Dean's Award (1st Place)</span>
@@ -45,3 +49,112 @@ permalink: /projects/
 <p>Depth-camera + eye-tracking setup that renders the driver's-perspective view to visually "remove" the A-pillar blind spot.</p>
 </article>
 </div>
+
+<div class="project-modals">
+<dialog class="project-modal" id="project-evoreg" aria-labelledby="project-evoreg-title">
+<div class="project-modal__inner">
+<header class="project-modal__head">
+<span class="kicker">Master's Project · Georgia Tech HAAG · Aug 2025 – Present</span>
+<h2 id="project-evoreg-title">EvoReg: Versatile and Robust Point Cloud Registration via Multi-Stage Alignment</h2>
+<ul class="project-modal__meta">
+<li>ICLR 2027 · under review</li>
+<li>Advisors: Dr. Supratik Mukhopadhyay, Dr. Nick Lytle</li>
+<li><a href="https://anonymous.4open.science/r/EvoReg-0507" target="_blank" rel="noopener">Code (anonymized)</a></li>
+</ul>
+<button type="button" class="project-modal__close" aria-label="Close" autofocus>&times;</button>
+</header>
+
+<p>Learned point cloud registration has split into specialized pipelines: methods are built for either rigid or non-rigid alignment, and for either pose-supervised or self-supervised training. EvoReg covers all four (rigid / non-rigid) &times; (supervised / self-supervised) settings with <strong>one architecture</strong>. It does this through <strong>staged decoupling</strong>: global search, local refinement, and deformation are split into stages that run in sequence. Each stage passes a tighter initialization to the next, so every later module solves an easier subproblem.</p>
+
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/evoreg_pipeline.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/evoreg_pipeline.jpg' | relative_url }}" alt="EvoReg architecture: CMA-ES pre-alignment, iterative Sinkhorn–Kabsch SVD, rigid MLP head, conditional-VAE deformation field, and inference-time refinements" loading="lazy"></a>
+<figcaption>Full pipeline, from the input pair through four learned stages to the optional inference-time refinements.</figcaption>
+</figure>
+
+<h3>Pipeline</h3>
+<ul>
+<li><strong>Stage 0: gradient-free pre-alignment.</strong> A CMA-ES search over SE(3) minimizes a Chamfer-style distance. It gives a pose-agnostic starting point that handles large rotations and does not depend on any learned stage.</li>
+<li><strong>Stage 1: iterative soft correspondence.</strong> PointNet features are matched with Sinkhorn-normalized cosine similarity. A confidence-weighted Kabsch SVD then refines the pose over three iterations, with a cycle-consistency constraint.</li>
+<li><strong>Stage 2: residual rigid head.</strong> An MLP predicts a small corrective rotation (6D representation) and translation.</li>
+<li><strong>Stage 3: conditional VAE deformation.</strong> A residual non-rigid displacement field is predicted on the already-aligned source, so the deformation network never has to absorb large pose errors.</li>
+<li><strong>Inference-time refinements (training-free).</strong> Four optional modules trade compute for accuracy without retraining: concentrated SE(3) search, point-space DDPM denoising, and global and per-point Sinkhorn test-time optimization.</li>
+</ul>
+<p>The four training settings share the architecture and differ only in which loss terms and augmentations are active. The self-supervised variants drop pose supervision and learn from geometric losses alone.</p>
+
+<h3>Evaluation</h3>
+<ul>
+<li>Trained <strong>only on ModelNet40</strong>. Evaluated on ModelNet40, ShapeNet-13, 3DMatch (real indoor RGB-D fragments), and FAUST (articulated human bodies) under controlled and real-world protocols.</li>
+<li>Compared against <strong>16 rigid</strong> baselines (including GeoTransformer, RoITr, Predator, RPMNet, DCP, and TEASER++) and <strong>4 non-rigid</strong> baselines (CPD, BCPD, NDP, and DefTransNet). All methods were scored with an identical pipeline.</li>
+<li>Among tested baselines, EvoReg had the best Chamfer Distance and Earth Mover's Distance in every evaluation cell. It reached perfect or near-perfect Chamfer Distance Recall in all four settings.</li>
+</ul>
+
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/evoreg_stages.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/evoreg_stages.jpg' | relative_url }}" alt="Stage-by-stage alignment of a ModelNet40 example, ending in a near-zero error map" loading="lazy"></a>
+<figcaption>Stage-by-stage alignment of a ModelNet40 example (rigid, self-supervised variant). The moving source (blue) converges onto the fixed target (orange).</figcaption>
+</figure>
+
+<h3>My role</h3>
+<p>I contributed throughout the project: model architecture design, the baseline evaluation pipeline, inference optimization, and manuscript preparation.</p>
+</div>
+</dialog>
+
+<dialog class="project-modal" id="project-wearable" aria-labelledby="project-wearable-title">
+<div class="project-modal__inner">
+<header class="project-modal__head">
+<span class="kicker">Samsung Research · Robot Center GEMS LAB · Jul – Aug 2022</span>
+<h2 id="project-wearable-title">IMU-Based Action Recognition for a Wearable Robot</h2>
+<ul class="project-modal__meta">
+<li>University Student Intern</li>
+<li>Action recognition · HRI</li>
+</ul>
+<button type="button" class="project-modal__close" aria-label="Close" autofocus>&times;</button>
+</header>
+
+<p>During a five-week internship, I built an algorithm that recognizes a user's motion from the IMUs on an upper-body wearable robot. The target was six boxing punches: straight, hook, and uppercut for each hand. The goal was real-time recognition that the robot could act on, for example with motor resistance or haptic feedback in a fitness game.</p>
+
+<div class="project-modal__split">
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/samsung_imu_gloves.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/samsung_imu_gloves.jpg' | relative_url }}" alt="Wrist-mounted IMU boards on boxing gloves with their x, y, z axes marked" loading="lazy"></a>
+<figcaption>Wrist-mounted IMUs used for data collection.</figcaption>
+</figure>
+<div>
+<h3>Data</h3>
+<ul>
+<li><strong>Prototype sensors:</strong> two wireless Nicla Sense ME (BHI260AP) boards streamed data over BLE. I wrote a multi-device logger with Python <code>asyncio</code>.</li>
+<li><strong>Robot sensors:</strong> five wired EBIMU-9DOF units on the wearable robot were logged at 100 Hz over Wi-Fi, by modifying the robot's Unity client.</li>
+<li>5 subjects, 200 samples per class. Signals: acceleration, gyroscope, and quaternion.</li>
+</ul>
+</div>
+</div>
+
+<h3>Pipeline</h3>
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/samsung_pipeline_diagram.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/samsung_pipeline_diagram.jpg' | relative_url }}" alt="Classifier pipeline: data acquisition, pre-processing, augmentation, feature extraction, feature selection, grid search, and SVM / CNN models" loading="lazy"></a>
+</figure>
+<ul>
+<li><strong>Pre-processing.</strong> EWMA smoothing suppresses vibration from loosely fitted arm IMUs. Each window is ~1 s, centered on a peak in wrist-direction acceleration, which marks one punch as one sample. Quaternions are converted to Euler angles, and window ends are zeroed out.</li>
+<li><strong>Augmentation.</strong> New windows are created by adding Gaussian noise scaled to the sensor resolution, to offset the small dataset.</li>
+<li><strong>Features.</strong> 1,455 per window: time-domain statistics, wavelet frequency-domain statistics, and roll / pitch / yaw correlations across sensors. A t-test ranking keeps the top 50–100 features, which are then checked with PCA.</li>
+<li><strong>Models.</strong> SVMs tuned by grid search with k-fold cross-validation, plus a CNN on STFT spectrograms and an ANN for comparison.</li>
+<li><strong>Recognition on the fly.</strong> A short calibration log sets a per-user peak threshold (minimum peak &times; 0.85). New punches are then detected and classified from the live stream.</li>
+</ul>
+
+<h3>Results</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Task</th><th>Classifier</th><th>Test accuracy</th></tr></thead>
+<tbody>
+<tr><td>Left vs. right hand</td><td>SVM</td><td><strong>100%</strong> (also in real time)</td></tr>
+<tr><td>Right straight / hook / uppercut</td><td>SVM</td><td><strong>100%</strong></td></tr>
+<tr><td>Left straight / hook / uppercut</td><td>SVM</td><td>77.78%</td></tr>
+<tr><td>One-hand, 3-class</td><td>ANN</td><td>94.44%</td></tr>
+<tr><td>Right / left 3-class</td><td>CNN</td><td>61.11% / 77.78%</td></tr>
+</tbody>
+</table>
+</div>
+<p>On this small, structured dataset, SVMs on engineered features beat the CNN. Hooks and uppercuts were the hardest to separate because their wrist orientations are similar. IMU-based position estimation, and magnetometer-aided Kalman filtering to correct drift, were the main next steps I proposed.</p>
+</div>
+</dialog>
+</div>
+
+<script src="{{ '/assets/js/projects.js' | relative_url }}" defer></script>

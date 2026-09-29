@@ -12,5 +12,5 @@ vendor/
 .vscode/
 
 # Local-only working files (not for the public repo)
-portfolio/
+/portfolio/
 paper_review/
