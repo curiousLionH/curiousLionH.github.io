@@ -59,7 +59,6 @@ permalink: /projects/
 <ul class="project-modal__meta">
 <li>ICLR 2027 · under review</li>
 <li>Advisors: Dr. Supratik Mukhopadhyay, Dr. Nick Lytle</li>
-<li><a href="https://anonymous.4open.science/r/EvoReg-0507" target="_blank" rel="noopener">Code (anonymized)</a></li>
 </ul>
 <button type="button" class="project-modal__close" aria-label="Close" autofocus>&times;</button>
 </header>
@@ -157,4 +156,4 @@ permalink: /projects/
 </dialog>
 </div>
 
-<script src="{{ '/assets/js/projects.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/projects.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
