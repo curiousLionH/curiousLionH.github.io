@@ -9,12 +9,15 @@ permalink: /projects/
 `git branch -a` — selected engineering and research projects. More write-ups live on the [blog](/blog/).
 
 <div class="project-grid">
+{% comment %}EvoReg detail dialog on hold until acceptance. To restore, swap this opening tag back in, then uncomment "View details" and the dialog below:
 <article class="project-card project-card--open" data-project="evoreg" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-evoreg">
+{% endcomment %}
+<article class="project-card">
 <figure class="project-card__media"><img src="{{ '/assets/img/portfolio/evoreg_pipeline.jpg' | relative_url }}" alt="EvoReg architecture overview (paper Figure 1)" loading="lazy"></figure>
 <span class="kicker">Master's Project · ICLR 2027 (under review)</span>
 <h3>EvoReg — Point Cloud Registration</h3>
 <p>Unified multi-stage framework for rigid and non-rigid registration, robust to noise, partial overlap, and deformation.</p>
-<span class="project-card__more">View details</span>
+{% comment %}<span class="project-card__more">View details</span>{% endcomment %}
 </article>
 <article class="project-card">
 <figure class="project-card__media"><img src="{{ '/assets/img/portfolio/robotaxi.jpg' | relative_url }}" alt="Hyundai IONIQ 5 robotaxi with roof-mounted LiDAR and sensor pods" loading="lazy"></figure>
@@ -67,6 +70,7 @@ permalink: /projects/
 </div>
 
 <div class="project-modals">
+{% comment %}EvoReg dialog — on hold until acceptance.
 <dialog class="project-modal" id="project-evoreg" aria-labelledby="project-evoreg-title">
 <div class="project-modal__inner">
 <header class="project-modal__head">
@@ -112,6 +116,7 @@ permalink: /projects/
 <p>I contributed throughout the project: model architecture design, the baseline evaluation pipeline, inference optimization, and manuscript preparation.</p>
 </div>
 </dialog>
+{% endcomment %}
 
 <dialog class="project-modal" id="project-lidar-mot" aria-labelledby="project-lidar-mot-title">
 <div class="project-modal__inner">
