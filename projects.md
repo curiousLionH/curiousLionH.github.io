@@ -21,10 +21,12 @@ permalink: /projects/
 <h3>Perception &amp; Tracking for Autonomous Driving</h3>
 <p>Camera-based and end-to-end 3D multi-object tracking frameworks, a custom tracking-performance evaluation pipeline, and a CUDA-based LiDAR interface in Python for high-throughput LiDAR data processing. Camera/LiDAR tracking and evaluation work shipped in Hyundai's autonomous-driving model, <a href="https://www.youtube.com/watch?v=-7BEzmdrlcU" target="_blank" rel="noopener">Atria AI</a>; the CUDA LiDAR interface supports the perception stack behind Hyundai's <a href="https://www.hyundaimotorgroup.com/ko/story/CONT0000000000002058" target="_blank" rel="noopener">RoboTaxi</a>.</p>
 </article>
-<article class="project-card">
+<article class="project-card project-card--open" data-project="lidar-mot" tabindex="0" role="button" aria-haspopup="dialog" aria-controls="project-lidar-mot">
+<figure class="project-card__media"><img src="{{ '/assets/img/portfolio/lidar_mot_thumb.jpg' | relative_url }}" alt="Top-down LiDAR point cloud with clustered objects and their bounding boxes" loading="lazy"></figure>
 <span class="kicker">Research Co-op · AMLAB</span>
 <h3>3D LiDAR-Based Multi-Object Tracking</h3>
 <p>Real-time 3D MOT for autonomous-vehicle perception — RANSAC ground removal, voxel downsampling, DBSCAN clustering, and a Kalman + Hungarian tracker, integrated in ROS 2.</p>
+<span class="project-card__more">View details</span>
 </article>
 <article class="project-card">
 <span class="kicker">Robotics · Capstone</span>
@@ -94,6 +96,65 @@ permalink: /projects/
 
 <h3>My role</h3>
 <p>I contributed throughout the project: model architecture design, the baseline evaluation pipeline, inference optimization, and manuscript preparation.</p>
+</div>
+</dialog>
+
+<dialog class="project-modal" id="project-lidar-mot" aria-labelledby="project-lidar-mot-title">
+<div class="project-modal__inner">
+<header class="project-modal__head">
+<span class="kicker">Research Co-op · Vehicle Systems Lab (AMLAB), Sungkyunkwan Univ. · Dec 2021 – Feb 2022</span>
+<h2 id="project-lidar-mot-title">3D LiDAR-Based Multi-Object Tracking</h2>
+<ul class="project-modal__meta">
+<li>Team of 3</li>
+<li>Python · Open3D</li>
+</ul>
+<button type="button" class="project-modal__close" aria-label="Close" autofocus>&times;</button>
+</header>
+
+<p>An autonomous vehicle needs the position and size of surrounding objects, and how they are moving, to plan and control. In this eight-week winter co-op, our team built a rule-based multi-object tracker for 3D LiDAR point clouds. It was planned as the LiDAR branch of a late-fusion design: camera and LiDAR are tracked separately and their results are fused afterwards.</p>
+
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/lidar_mot_pipeline.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/lidar_mot_pipeline.jpg' | relative_url }}" alt="Pipeline: 3D LiDAR point clouds go through detection (ground removal, segmentation, bounding box) and tracking (data association, state estimation, track management)" loading="lazy"></a>
+<figcaption>Overall pipeline: detection turns raw point clouds into object boxes, and tracking links those boxes over time.</figcaption>
+</figure>
+
+<h3>Detection</h3>
+<ul>
+<li><strong>Ground removal.</strong> RANSAC plane fitting removes ground points. Without this step the road merges with nearby objects, and only a few vehicles could be tracked.</li>
+<li><strong>Segmentation.</strong> Voxel downsampling reduces the point count, and DBSCAN density clustering groups the remaining points into objects.</li>
+<li><strong>Bounding boxes.</strong> Each cluster's convex hull is fitted with a minimum-area rectangle, which gives the object's center, size, and heading.</li>
+<li><strong>Filtering.</strong> Clusters that are not vehicles, such as street trees, curbs, and flower beds, are discarded using thresholds on top-view area, length-to-width ratio, and point density.</li>
+</ul>
+
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/lidar_mot_ground_removal.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/lidar_mot_ground_removal.jpg' | relative_url }}" alt="Clustered point cloud before and after ground removal" loading="lazy"></a>
+<figcaption>Before (left) and after (right) ground removal. Once the road surface is gone, many more vehicles are separated into their own clusters and boxes.</figcaption>
+</figure>
+
+<div class="project-modal__split">
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/lidar_mot_min_rect.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/lidar_mot_min_rect.jpg' | relative_url }}" alt="Minimum-area rectangle fitted around a convex hull" loading="lazy"></a>
+<figcaption>Minimum-area rectangle on a cluster's convex hull.</figcaption>
+</figure>
+<div>
+<h3>Tracking</h3>
+<ul>
+<li><strong>Data association.</strong> Existing tracks are matched to new detections by linear sum assignment (Hungarian method). The cost combines displacement, heading change, and size change. Pairs too far apart are gated out, and a match is accepted only below a cost threshold.</li>
+<li><strong>State estimation.</strong> A constant-velocity Kalman filter predicts each box center and corrects it with the new measurement. This gives a smoothed position and velocity for every track.</li>
+<li><strong>Box tracking.</strong> Each track ID keeps its best box observed so far, scored by point density. This steadies box size when an object is only partly visible.</li>
+</ul>
+</div>
+</div>
+
+<h3>Results</h3>
+<figure class="project-modal__fig">
+<a href="{{ '/assets/img/portfolio/lidar_mot_result.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/lidar_mot_result.jpg' | relative_url }}" alt="Tracked boxes in the point cloud, a plot of velocity vectors, and a log of track IDs with box centers and relative velocities" loading="lazy"></a>
+<figcaption>Tracker output: tracked boxes (left), estimated velocity vectors (center), and per-track box centers and relative velocities (right).</figcaption>
+</figure>
+<p>Detection and track creation worked reliably: each object received a persistent track ID with its position and velocity. Association was the weak point. LiDAR geometry alone was often not enough to tell whether two detections were the same object. The next steps we proposed were camera detection with YOLOv5, camera–LiDAR calibration to fuse the two, and an IMM-JPDA-UKF tracker.</p>
+
+<h3>My role</h3>
+<p>I set up the development environment and implemented and debugged most of the pipeline. My parts were ground removal, segmentation and clustering, the object filters, bounding-box improvements, the Kalman filter (shared with teammates), and the velocity-vector visualization.</p>
 </div>
 </dialog>
 
