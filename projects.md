@@ -25,7 +25,7 @@ permalink: /projects/
 <figure class="project-card__media"><img src="{{ '/assets/img/portfolio/lidar_mot_thumb.jpg' | relative_url }}" alt="Top-down LiDAR point cloud with clustered objects and their bounding boxes" loading="lazy"></figure>
 <span class="kicker">Research Co-op · AMLAB</span>
 <h3>3D LiDAR-Based Multi-Object Tracking</h3>
-<p>Real-time 3D MOT for autonomous-vehicle perception — RANSAC ground removal, voxel downsampling, DBSCAN clustering, and a Kalman + Hungarian tracker, integrated in ROS 2.</p>
+<p>3D MOT for autonomous-vehicle perception, run on logged ROS 2 bag data — RANSAC ground removal, voxel downsampling, DBSCAN clustering, and a Kalman + Hungarian tracker.</p>
 <span class="project-card__more">View details</span>
 </article>
 <article class="project-card">
@@ -106,12 +106,12 @@ permalink: /projects/
 <h2 id="project-lidar-mot-title">3D LiDAR-Based Multi-Object Tracking</h2>
 <ul class="project-modal__meta">
 <li>Team of 3</li>
-<li>Python · Open3D</li>
+<li>Python · Open3D · ROS 2 (rosbag)</li>
 </ul>
 <button type="button" class="project-modal__close" aria-label="Close" autofocus>&times;</button>
 </header>
 
-<p>An autonomous vehicle needs the position and size of surrounding objects, and how they are moving, to plan and control. In this eight-week winter co-op, our team built a rule-based multi-object tracker for 3D LiDAR point clouds. It was planned as the LiDAR branch of a late-fusion design: camera and LiDAR are tracked separately and their results are fused afterwards.</p>
+<p>An autonomous vehicle needs the position and size of surrounding objects, and how they are moving, to plan and control. In this eight-week winter co-op, our team built a rule-based multi-object tracker for 3D LiDAR point clouds, developed and evaluated offline on driving data logged as ROS 2 bags. It was planned as the LiDAR branch of a late-fusion design: camera and LiDAR are tracked separately and their results are fused afterwards.</p>
 
 <figure class="project-modal__fig">
 <a href="{{ '/assets/img/portfolio/lidar_mot_pipeline.jpg' | relative_url }}" target="_blank" rel="noopener"><img src="{{ '/assets/img/portfolio/lidar_mot_pipeline.jpg' | relative_url }}" alt="Pipeline: 3D LiDAR point clouds go through detection (ground removal, segmentation, bounding box) and tracking (data association, state estimation, track management)" loading="lazy"></a>
