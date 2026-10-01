@@ -690,6 +690,7 @@ html.modal-open { overflow: hidden; }
   color: var(--dim);
   line-height: 1.5;
 }
+.project-modal__fig--narrow { max-width: 620px; margin-inline: auto; }
 .project-modal__split {
   display: grid;
   grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
