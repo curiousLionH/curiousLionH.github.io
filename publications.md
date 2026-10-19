@@ -8,29 +8,24 @@ permalink: /publications/
 
 `git tag --list` — preprints and patents.
 
-{% comment %}
-Preprints hidden until the papers are accepted.
+## Under review
 
-## Preprints / under review
-
-- **EvoReg: Versatile and Robust Point Cloud Registration via Multi-Stage Alignment**
-  Joohyun Lee (master's project, Georgia Tech). Submitted to **ICLR 2027** — under review.
-  A single architecture spanning rigid / non-rigid and supervised / self-supervised
-  registration via staged decoupling: gradient-free CMA-ES SE(3) search, iterative
-  Sinkhorn–Kabsch refinement, a residual rigid head, and a conditional-VAE deformation
-  field, with optional training-free inference-time refinements.
-  *Preprint available on request.*
-
-- **LatticeSpike: Real-Time Token-Level Hallucination Detection via Box Embeddings and Spiking Dynamics**
-  Co-author, Human-Augmented Analytics Group (HAAG), Georgia Tech. Submitted to **ICLR 2027** — under review.
-  A lightweight detector that runs alongside a frozen language model and scores every token
-  as it is generated. Each step's signals are embedded as a box whose volume reflects semantic
-  spread, and a recurrent spiking network's prediction error serves as the hallucination score.
-  It outperforms twelve baselines in 96 of 101 evaluation cells, and the paper releases two
-  token-level benchmarks (THRIVE-Llama, THRIVE-Gemma). My part was the causal per-step signal
-  readout from the language model and the pipeline visualizations.
-  *Preprint available on request.*
-{% endcomment %}
+<div class="pub-list">
+<article class="pub">
+<figure class="pub__media"><img src="{{ '/assets/img/portfolio/evoreg_pipeline.jpg' | relative_url }}" alt="EvoReg architecture overview" loading="lazy"></figure>
+<div class="pub__text">
+<h3 class="pub__title">EvoReg: Versatile and Robust Point Cloud Registration via Multi-Stage Alignment</h3>
+<span class="pub__venue">ICLR 2027 · under review</span>
+</div>
+</article>
+<article class="pub">
+<figure class="pub__media"><img src="{{ '/assets/img/portfolio/latticespike_phase1.jpg' | relative_url }}" alt="LatticeSpike per-token signal readout from a frozen language model" loading="lazy"></figure>
+<div class="pub__text">
+<h3 class="pub__title">LatticeSpike: Real-Time Token-Level Hallucination Detection via Box Embeddings and Spiking Dynamics</h3>
+<span class="pub__venue">ICLR 2027 · under review</span>
+</div>
+</article>
+</div>
 
 ## Patents
 

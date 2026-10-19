@@ -20,6 +20,12 @@ permalink: /projects/
 {% comment %}<span class="project-card__more">View details</span>{% endcomment %}
 </article>
 <article class="project-card">
+<figure class="project-card__media"><img src="{{ '/assets/img/portfolio/latticespike_phase1.jpg' | relative_url }}" alt="LatticeSpike phase one: per-token signals read from a frozen language model (paper Figure 1)" loading="lazy"></figure>
+<span class="kicker">Georgia Tech HAAG · ICLR 2027 (under review)</span>
+<h3>LatticeSpike — Real-Time Hallucination Detection</h3>
+<p>Lightweight detector that scores every token as a frozen language model generates it, using box embeddings and spiking dynamics.</p>
+</article>
+<article class="project-card">
 <figure class="project-card__media"><img src="{{ '/assets/img/portfolio/robotaxi.jpg' | relative_url }}" alt="Hyundai IONIQ 5 robotaxi with roof-mounted LiDAR and sensor pods" loading="lazy"></figure>
 <span class="kicker">Hyundai Motor Company · Research Engineer</span>
 <h3>Perception &amp; Tracking for Autonomous Driving</h3>

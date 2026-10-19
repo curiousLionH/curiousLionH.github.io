@@ -606,6 +606,50 @@ a:hover { color: var(--yellow); }
 }
 .project-card__more::after { content: " →"; }
 
+/* ---------- Publication entries (thumbnail + text) ---------- */
+
+.pub-list { display: flex; flex-direction: column; gap: 16px; margin: 0 0 32px; }
+.pub {
+  display: flex;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  overflow: hidden;
+  transition: border-color .15s ease;
+}
+.pub:hover { border-color: var(--green); }
+.pub__media {
+  flex: 0 0 240px;
+  margin: 0;
+  background: #fff;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+.pub__media img { width: 100%; height: auto; display: block; }
+.pub__text {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+.prose .pub__title,
+.pub__title { font-size: 15px; margin: 0; font-family: var(--sans); font-weight: 600; line-height: 1.45; }
+.prose .pub__title::before { content: none; }
+.pub__venue {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--change);
+}
+@media (max-width: 620px) {
+  .pub { flex-direction: column; }
+  .pub__media { flex-basis: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+}
+
 /* ---------- Project detail dialog ---------- */
 
 html.modal-open { overflow: hidden; }
